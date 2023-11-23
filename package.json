@@ -14,8 +14,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "preview": "next build && next start",
-    "postinstall": "prisma generate"
+    "preview": "next build && next start"
   },
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
