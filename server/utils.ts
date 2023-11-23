@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server"
 
 import "server-only"
-import { ZodError, ZodSchema, z } from "zod"
+
+import { ZodError, ZodSchema } from "zod"
 
 export class ServerResponse {
   static success<JsonBody>(props?: { body?: JsonBody; headers?: HeadersInit }) {

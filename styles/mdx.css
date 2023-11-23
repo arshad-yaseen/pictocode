@@ -1,0 +1,13 @@
+.hljs-keyword,
+.hljs-comment,
+.hljs-title,
+.hljs-function,
+.hljs-attr,
+.hljs-attribute,
+.hljs-section {
+  @apply text-muted-foreground;
+}
+
+em {
+  font-family: "Times New Roman", Times, serif, sans-serif;
+}
