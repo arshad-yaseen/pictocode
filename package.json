@@ -35,6 +35,7 @@
     "clsx": "^2.0.0",
     "geist": "^1.1.0",
     "husky": "^8.0.3",
+    "lucide-react": "^0.292.0",
     "next": "14.0.3",
     "next-themes": "^0.2.1",
     "react": "^18",
