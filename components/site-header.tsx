@@ -8,7 +8,7 @@ import { Button } from "~/components/ui/button"
 
 const SiteHeader = () => {
   return (
-    <header className="grid h-12 w-full grid-cols-2 px-10 py-4 md:grid-cols-3">
+    <header className="grid h-[7vh] w-full grid-cols-2 px-10 py-4 md:grid-cols-3">
       <Link
         href="/"
         className="col-span-1 flex h-12 items-center justify-start md:col-span-1"
@@ -27,7 +27,7 @@ const SiteHeader = () => {
             className="mx-3 h-8 rounded-full bg-gray-4 px-4 hover:bg-gray-5"
             variant={"secondary"}
           >
-            3 Credits
+            1 Free Credit
           </Badge>
           <Link
             href={siteConfig.links.github}
@@ -36,7 +36,7 @@ const SiteHeader = () => {
           >
             Github
           </Link>
-          <Button className="mx-3 rounded-full">Buy Credits</Button>
+          <Button className="mx-3 rounded-full">Bring OpenAI API Key</Button>
         </nav>
       </div>
     </header>

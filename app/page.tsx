@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { renderToString } from "react-dom/server"
 
 import useThrottle from "~/hooks/useThrottle"
 import SiteHeader from "~/components/site-header"
+import SiteHero from "~/components/site-hero"
 
 const tailwindCssLink = '<script src="https://cdn.tailwindcss.com"></script>'
 
@@ -49,6 +49,7 @@ export default function Home() {
         className='w-screen h-screen'
       ></iframe> */}
       <SiteHeader />
+      <SiteHero />
     </main>
   )
 }
