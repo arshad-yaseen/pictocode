@@ -1,8 +1,16 @@
 import React, { useRef } from "react"
 import { UploadIcon } from "@radix-ui/react-icons"
+import { SparklesIcon } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select"
 
 const UploadersSection = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -23,6 +31,30 @@ const UploadersSection = () => {
         Upload Image
       </Button>
       <input accept="image/*" type="file" className="hidden" ref={inputRef} />
+      {/* <div className="grid w-[500px] grid-cols-2 gap-2 py-10">
+        <Select defaultValue="React">
+          <SelectTrigger className="col-span-1">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="React">React</SelectItem>
+            <SelectItem value="HTML">HTML</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select defaultValue="Tailwind CSS">
+          <SelectTrigger className="col-span-1">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Tailwind CSS">Tailwind CSS</SelectItem>
+            <SelectItem value="CSS">CSS</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <Button className="mx-3 h-10 rounded-full px-6">
+        <SparklesIcon className="mr-2 h-4 w-4" />
+        Generate
+      </Button> */}
     </section>
   )
 }

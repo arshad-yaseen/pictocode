@@ -5,6 +5,7 @@ import Link from "next/link"
 import { siteConfig } from "~/config/site"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
+import BringApiKey from "~/components/bring-api-key"
 
 const SiteHeader = () => {
   return (
@@ -24,19 +25,19 @@ const SiteHeader = () => {
       <div className="col-span-1  h-12 items-center justify-end md:col-span-2">
         <nav className="flex items-center justify-end">
           <Badge
-            className="mx-3 h-8 rounded-full bg-gray-4 px-4 hover:bg-gray-5"
+            className="mx-3 h-8 rounded-full bg-gray-4 px-4 hover:bg-gray-5 text-gray-12 font-medium"
             variant={"secondary"}
           >
-            1 Free Credit
+            1 Credit
           </Badge>
           <Link
             href={siteConfig.links.github}
             target="_blank"
-            className="px-3 py-2 font-medium text-gray-12 transition-colors hover:text-gray-11"
+            className="px-3 py-2 font-medium text-gray-12 transition-colors hover:text-gray-12/80"
           >
             Github
           </Link>
-          <Button className="mx-3 rounded-full">Bring OpenAI API Key</Button>
+          <BringApiKey />
         </nav>
       </div>
     </header>

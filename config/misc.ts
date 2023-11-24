@@ -1,0 +1,1 @@
+export const openai_usage_policy_url = "https://openai.com/policies/usage-policies"
