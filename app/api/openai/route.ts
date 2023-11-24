@@ -3,24 +3,23 @@ import { OpenAIBody } from "~/types"
 import { OpenAIStream, StreamingTextResponse } from "ai"
 import OpenAI from "openai"
 
-import { env } from "~/env.mjs"
 import { models } from "~/config/ai"
-import { openai } from "~/lib/openai"
+import { isCorrectApiKey } from "~/lib/ai"
 
 export const runtime = "edge"
-
-if (!env.OPENAI_API_KEY) {
-  throw new Error("Missing env var from OpenAI")
-}
 
 export async function POST(req: Request): Promise<Response> {
   const body = await req.json()
   const {
     openai_body,
     type = "chat",
+    api_key,
+    stream_response = true,
   }: {
     openai_body: OpenAIBody
     type: "chat" | "vision"
+    api_key: string
+    stream_response: boolean
   } = body
 
   if (!openai_body) {
@@ -29,14 +28,46 @@ export async function POST(req: Request): Promise<Response> {
     return ServerResponse.badRequest("Missing openai_body.messages")
   }
 
-  const payload: OpenAI.ChatCompletionCreateParams = {
-    model: type === "chat" ? models.chat : models.vision,
-    ...openai_body,
-    stream: true,
+  let OPENAI_API_KEY
+
+  if (api_key) {
+    OPENAI_API_KEY = api_key
+  } else {
+    // do other stuff
   }
 
-  const response = await openai.chat.completions.create(payload)
+  if (!isCorrectApiKey(OPENAI_API_KEY)) {
+    return ServerResponse.unauthorized("Incorrect API key")
+  }
 
-  const stream = OpenAIStream(response)
-  return new StreamingTextResponse(stream)
+  const openai = new OpenAI({
+    apiKey: OPENAI_API_KEY,
+  })
+
+  const payload: OpenAI.ChatCompletionCreateParams = {
+    ...openai_body,
+    model: type === "chat" ? models.chat : models.vision,
+    stream: stream_response,
+  }
+
+  let response
+
+  try {
+    response = await openai.chat.completions.create(payload)
+  } catch (error) {
+    return ServerResponse.internalServerError(
+      (error as any).message,
+      (error as any).status
+    )
+  }
+
+  if (stream_response) {
+    // @ts-ignore
+    const stream = OpenAIStream(response)
+    return new StreamingTextResponse(stream)
+  } else {
+    return ServerResponse.success({
+      body: response,
+    })
+  }
 }
