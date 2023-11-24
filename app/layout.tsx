@@ -3,6 +3,7 @@ import { cn } from "~/lib/utils"
 
 import "~/styles/globals.css"
 import "~/styles/components.css"
+import "~/styles/mdx.css"
 
 import { Metadata } from "next"
 
@@ -58,6 +59,7 @@ export default async function RootLayout({
           fontMono.variable
         )}
       >
+
         <Providers>{children}</Providers>
       </body>
     </html>
