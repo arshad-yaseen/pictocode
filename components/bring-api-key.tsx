@@ -17,7 +17,8 @@ import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 import Link from "next/link"
 import { Loader2Icon } from "lucide-react"
-import { links } from "~/config/misc"
+import { ERROR } from "~/constants/res-messages"
+import { HOW_TO_ACCESS_GPT_4_POST, OPENAI_USAGE_POLICIES } from "~/constants/links"
 
 const BringApiKey = () => {
   const [apiKey, setApiKey] = useState<string>("")
@@ -31,7 +32,7 @@ const BringApiKey = () => {
   const saveApiKey = async (apiKey: string) => {
     if (saving) return
     if (!isCorrectApiKey(apiKey)) {
-      toast.error("Incorrect API key")
+      toast.error(ERROR.INCORRECT_API_KEY)
       return
     }
 
@@ -50,8 +51,14 @@ const BringApiKey = () => {
       }
     } else {
       setApiKeyNotSupported(null)
-      toast.success("API key saved successfully")
+      await save()
     }
+  }
+
+  const save = async () => {
+    // TODO: Save API key
+
+    toast.success("API key saved successfully")
   }
 
   return (
@@ -95,7 +102,7 @@ const BringApiKey = () => {
               />
               <Label
                 onClick={() => {
-                  window.open(links.openai_usage_policies, "_blank")
+                  window.open(OPENAI_USAGE_POLICIES, "_blank")
                 }}
                 className="cursor-pointer text-sm font-medium leading-none transition-colors hover:text-gray-12/80 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
@@ -129,7 +136,7 @@ const BringApiKey = () => {
           {apiKeyNotSupported && (
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">{apiKeyNotSupported}</p>
-              <Link href={links.how_to_access_gpt_4_post} target="_blank" className="text-sm underline underline-offset-4">
+              <Link href={HOW_TO_ACCESS_GPT_4_POST} target="_blank" className="text-sm underline underline-offset-4">
                 Learn more about this
               </Link>
             </div>

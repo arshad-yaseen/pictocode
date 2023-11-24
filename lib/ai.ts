@@ -1,8 +1,8 @@
 import { OpenAIBody } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
-import { toast } from "sonner"
 
 import { example_vision_api_messages, models } from "~/config/ai"
+import { ERROR, SUCCESS } from "~/constants/res-messages"
 
 type OpenAIResponse = {
   isSuccess: boolean
@@ -109,13 +109,13 @@ export const validateApiKey = async (
   if (isSupportedKey.isSuccess) {
     return {
       error: false,
-      message: "Valid API key",
+      message: SUCCESS.VALID_API_KEY,
       code: "valid_api_key",
     }
   } else if (isSupportedKey.error?.statusCode === 401) {
     return {
       error: true,
-      message: "Invalid API key",
+      message: ERROR.INVALID_API_KEY,
       code: "",
     }
   } else if (
@@ -124,8 +124,7 @@ export const validateApiKey = async (
   ) {
     return {
       error: true,
-      message:
-        "The provided API key doesn't work with OpenAI's GPT 4 Vision API. To enable it, please pay at least $1 to OpenAI.",
+      message: ERROR.UNSUPPORTED_API_KEY,
       code: "unsupported_api_key",
     }
   } else {
