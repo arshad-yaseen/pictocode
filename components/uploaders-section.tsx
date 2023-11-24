@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
+import { fetchOpenAI } from "~/lib/ai"
 
 const UploadersSection = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -22,7 +23,23 @@ const UploadersSection = () => {
         placeholder="Enter image URL or Website URL"
         className="w-[500px] border-2 transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent"
       />
-      <p className="my-4 text-gray-10">or</p>
+      <p 
+      onClick={async () => {
+        const fetchRes = await fetchOpenAI({
+          openaiBody: {
+            messages: [
+              {
+                role: "user",
+                content: "Hello, world",
+              }
+            ]
+          },
+          streamResponse: false
+        })
+        console.log(fetchRes);
+        
+      }}
+      className="my-4 text-gray-10">or</p>
       <Button
         onClick={() => inputRef.current?.click()}
         className="mx-3 h-10 rounded-full px-6"

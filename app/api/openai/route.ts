@@ -1,3 +1,4 @@
+import { SESSION_KEY } from "~/constants/misc"
 import { ServerResponse } from "~/server/utils"
 import { OpenAIBody } from "~/types"
 import { OpenAIStream, StreamingTextResponse } from "ai"
@@ -5,6 +6,7 @@ import OpenAI from "openai"
 
 import { models } from "~/config/ai"
 import { isCorrectApiKey } from "~/lib/ai"
+import { get } from "~/lib/session/session-store"
 
 export const runtime = "edge"
 
@@ -33,7 +35,11 @@ export async function POST(req: Request): Promise<Response> {
   if (api_key) {
     OPENAI_API_KEY = api_key
   } else {
-    // do other stuff
+    const stored_api_key = (await get(SESSION_KEY)) as string
+    if (!stored_api_key) {
+      return ServerResponse.unauthorized("Missing API key")
+    }
+    OPENAI_API_KEY = stored_api_key
   }
 
   if (!isCorrectApiKey(OPENAI_API_KEY)) {

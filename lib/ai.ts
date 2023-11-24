@@ -1,8 +1,8 @@
-import { ERROR, SUCCESS } from "~/constants/res-messages"
 import { OpenAIBody } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
 
 import { example_vision_api_messages, models } from "~/config/ai"
+import { ERROR, SUCCESS } from "~/constants/res-messages"
 
 type OpenAIResponse = {
   isSuccess: boolean
@@ -17,7 +17,7 @@ type OpenAIResponse = {
 }
 
 type OpenAIOptions = {
-  apiKey: string
+  apiKey?: string
   openaiBody: OpenAIBody
   type?: "chat" | "vision"
   streamResponse?: boolean
@@ -116,7 +116,7 @@ export const validateApiKey = async (
     return {
       error: true,
       message: ERROR.INVALID_API_KEY,
-      code: "",
+      code: "invalid_api_key",
     }
   } else if (
     isSupportedKey.error?.statusCode === 404 &&

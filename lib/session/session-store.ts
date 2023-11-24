@@ -25,3 +25,11 @@ export function set(key: string, value: string, namespace: string = "") {
   const sessionId = getSessionIdAndCreateIfMissing()
   return kv.hset(`session-${namespace}-${sessionId}`, { [key]: value })
 }
+
+export function del(key: string, namespace: string = "") {
+  const sessionId = getSessionId()
+  if (!sessionId) {
+    return null
+  }
+  return kv.hdel(`session-${namespace}-${sessionId}`, key)
+}

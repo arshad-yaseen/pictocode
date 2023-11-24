@@ -40,6 +40,25 @@
     --gray11: 0 0% 43.5%;
     --gray12: 0 0% 9%;
 
+    --tomato1: 10, 100%, 99.4%;
+    --tomato2: 8, 100%, 98.4%;
+    --tomato3: 8, 100%, 96.6%;
+    --tomato4: 8, 100%, 94.3%;
+    --tomato5: 8, 92.8%, 91%;
+    --tomato6: 9, 84.7%, 86.3%;
+    --tomato7: 10, 77.3%, 79.5%;
+    --tomato8: 10, 71.6%, 71%;
+    --tomato9: 10, 78%, 54%;
+    --tomato10: 10, 71.4%, 49.4%;
+    --tomato11: 10, 82%, 42%;
+    --tomato12: 8, 50%, 24%;
+
+    --error: var(--tomato9);
+    --error-light: var(--tomato4);
+    --error-lighter: var(--tomato2);
+    --error-foreground: var(--tomato11);
+    --error-hover: var(--tomato10);
+
     /* Shadows */
     --shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
     --shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.04);
@@ -98,6 +117,19 @@
     --gray10: 0 0% 49.4%;
     --gray11: 0 0% 62.8%;
     --gray12: 0 0% 93%;
+
+    --tomato1: 10, 23%, 9.4%;
+    --tomato2: 10, 39%, 11.6%;
+    --tomato3: 9, 48.3%, 15.5%;
+    --tomato4: 9, 53%, 18.1%;
+    --tomato5: 9, 57%, 20.7%;
+    --tomato6: 9, 61.8%, 24.5%;
+    --tomato7: 9, 68.4%, 31.1%;
+    --tomato8: 10, 80.4%, 43.9%;
+    --tomato9: 10, 78%, 54%;
+    --tomato10: 10, 88.4%, 64.1%;
+    --tomato11: 10, 100%, 72%;
+    --tomato12: 10, 85%, 89%;
   }
 }
 

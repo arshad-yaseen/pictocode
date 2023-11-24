@@ -9,4 +9,6 @@ export const ERROR = {
   UNEXPECTED_RESPONSE: "Response did not contain expected data",
   UNSUPPORTED_API_KEY:
     "The provided API key doesn't work with OpenAI's GPT 4 Vision API. To enable it, please pay at least $1 to OpenAI.",
+  API_KEY_NOT_SAVED: "API key not saved",
+  API_KEY_NOT_DELETED: "API key not deleted",
 }
