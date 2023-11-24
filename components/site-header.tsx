@@ -3,8 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "~/config/site"
-import { Button } from "~/components/ui/button"
 import { Badge } from "~/components/ui/badge"
+import { Button } from "~/components/ui/button"
 
 const SiteHeader = () => {
   return (
@@ -17,19 +17,22 @@ const SiteHeader = () => {
           <Image src="/icon.png" fill alt="Header Logo" />
           <span className="sr-only">Header Logo</span>
         </div>
-        <h2 className="text-gray-12 text-xl font-semibold">
+        <h2 className="text-xl font-semibold text-gray-12">
           {siteConfig.short_name}
         </h2>
       </Link>
       <div className="col-span-1  h-12 items-center justify-end md:col-span-2">
-        <nav className="flex justify-end items-center">
-        <Badge className="mx-3 rounded-full h-8 px-4 bg-gray-4 hover:bg-gray-5" variant={"secondary"}>
+        <nav className="flex items-center justify-end">
+          <Badge
+            className="mx-3 h-8 rounded-full bg-gray-4 px-4 hover:bg-gray-5"
+            variant={"secondary"}
+          >
             3 Credits
           </Badge>
           <Link
             href={siteConfig.links.github}
             target="_blank"
-            className="text-gray-12 hover:text-gray-11 px-3 py-2 font-medium transition-colors"
+            className="px-3 py-2 font-medium text-gray-12 transition-colors hover:text-gray-11"
           >
             Github
           </Link>

@@ -1,28 +1,28 @@
-import React from "react";
+import React from "react"
 
 // Updates take effect immediately if the last update was more than {interval} ago.
 // Otherwise, updates are throttled to {interval}. The latest value is always sent.
 // The last update always gets executed, with potentially a {interval} delay.
 export function useThrottle(value: string, interval = 500) {
-  const [throttledValue, setThrottledValue] = React.useState(value);
-  const lastUpdated = React.useRef<number | null>(null);
+  const [throttledValue, setThrottledValue] = React.useState(value)
+  const lastUpdated = React.useRef<number | null>(null)
 
   React.useEffect(() => {
-    const now = performance.now();
+    const now = performance.now()
 
     if (!lastUpdated.current || now >= lastUpdated.current + interval) {
-      lastUpdated.current = now;
-      setThrottledValue(value);
+      lastUpdated.current = now
+      setThrottledValue(value)
     } else {
       const id = window.setTimeout(() => {
-        lastUpdated.current = now;
-        setThrottledValue(value);
-      }, interval);
+        lastUpdated.current = now
+        setThrottledValue(value)
+      }, interval)
 
-      return () => window.clearTimeout(id);
+      return () => window.clearTimeout(id)
     }
-  }, [value, interval]);
+  }, [value, interval])
 
-  return throttledValue;
+  return throttledValue
 }
-export default useThrottle;
+export default useThrottle

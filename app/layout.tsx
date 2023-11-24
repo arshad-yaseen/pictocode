@@ -59,7 +59,6 @@ export default async function RootLayout({
           fontMono.variable
         )}
       >
-
         <Providers>{children}</Providers>
       </body>
     </html>

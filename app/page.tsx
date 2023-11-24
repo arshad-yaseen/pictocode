@@ -1,10 +1,12 @@
 "use client"
-import { useEffect, useRef } from 'react';
-import useThrottle from '~/hooks/useThrottle';
-import { renderToString } from 'react-dom/server';
-import SiteHeader from '~/components/site-header';
 
-const tailwindCssLink = '<script src="https://cdn.tailwindcss.com"></script>';
+import { useEffect, useRef } from "react"
+import { renderToString } from "react-dom/server"
+
+import useThrottle from "~/hooks/useThrottle"
+import SiteHeader from "~/components/site-header"
+
+const tailwindCssLink = '<script src="https://cdn.tailwindcss.com"></script>'
 
 const code = `<div class="container mx-auto p-4">
 <div class="max-w-sm rounded overflow-hidden shadow-lg">
@@ -22,22 +24,22 @@ const code = `<div class="container mx-auto p-4">
         </button>
     </div>
 </div>
-</div>`;
+</div>`
 
 export default function Home() {
-  const throttledCode = useThrottle(code, 200);
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const throttledCode = useThrottle(code, 200)
+  const iframeRef = useRef<HTMLIFrameElement | null>(null)
 
   useEffect(() => {
-    const iframe = iframeRef.current;
+    const iframe = iframeRef.current
     if (iframe && iframe.contentDocument) {
-      const doc = iframe.contentDocument;
-      doc.open();
-      doc.write(tailwindCssLink);
-      doc.write(throttledCode);
-      doc.close();
+      const doc = iframe.contentDocument
+      doc.open()
+      doc.write(tailwindCssLink)
+      doc.write(throttledCode)
+      doc.close()
     }
-  }, [throttledCode]);
+  }, [throttledCode])
 
   return (
     <main>
@@ -48,5 +50,5 @@ export default function Home() {
       ></iframe> */}
       <SiteHeader />
     </main>
-  );
+  )
 }
