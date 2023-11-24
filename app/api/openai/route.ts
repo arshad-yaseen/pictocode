@@ -55,10 +55,7 @@ export async function POST(req: Request): Promise<Response> {
   try {
     response = await openai.chat.completions.create(payload)
   } catch (error) {
-    return ServerResponse.internalServerError(
-      (error as any).message,
-      (error as any).status
-    )
+    return ServerResponse.error((error as any).message, (error as any).status)
   }
 
   if (stream_response) {

@@ -4,6 +4,7 @@ import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { motion } from "framer-motion"
 import { CheckIcon } from "lucide-react"
+
 import { cn } from "~/lib/utils"
 
 const Checkbox = React.forwardRef<
@@ -16,7 +17,7 @@ const Checkbox = React.forwardRef<
     <CheckboxPrimitive.Root
       ref={ref}
       className={cn(
-        "peer h-4 w-4 shrink-0 rounded-[4.5px] border border-gray-10 shadow-small transition-all duration-200 hover:border-gray-11 hover:bg-secondary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-disabled data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
+        "disabled:opacity-disabled peer h-4 w-4 shrink-0 rounded-[4.5px] border border-gray-10 shadow-small transition-all duration-200 hover:border-gray-11 hover:bg-secondary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
         indeterminate &&
           "opacity-disabled transition-colors duration-200 hover:bg-secondary",
         className
@@ -26,7 +27,7 @@ const Checkbox = React.forwardRef<
       {...props}
     >
       {indeterminate && (
-        <div className="h-full w-full flex items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center">
           <span className="text-xl">-</span>
         </div>
       )}

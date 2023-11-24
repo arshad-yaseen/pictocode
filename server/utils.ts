@@ -23,8 +23,8 @@ export class ServerResponse {
     return NextResponse.json({ error: { message } }, { status: 403 })
   }
 
-  static internalServerError(message: string = "Internal server error", status: number = 500) {
-    return NextResponse.json({ error: { message } }, { status })
+  static internalServerError(message: string = "Internal server error") {
+    return NextResponse.json({ error: { message } }, { status: 500 })
   }
 
   static badRequest(message: string = "Bad request") {

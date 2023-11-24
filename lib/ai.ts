@@ -1,8 +1,8 @@
+import { ERROR, SUCCESS } from "~/constants/res-messages"
 import { OpenAIBody } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
 
 import { example_vision_api_messages, models } from "~/config/ai"
-import { ERROR, SUCCESS } from "~/constants/res-messages"
 
 type OpenAIResponse = {
   isSuccess: boolean

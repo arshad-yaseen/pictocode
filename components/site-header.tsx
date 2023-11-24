@@ -25,7 +25,7 @@ const SiteHeader = () => {
       <div className="col-span-1  h-12 items-center justify-end md:col-span-2">
         <nav className="flex items-center justify-end">
           <Badge
-            className="mx-3 h-8 rounded-full bg-gray-4 px-4 hover:bg-gray-5 text-gray-12 font-medium"
+            className="mx-3 h-8 rounded-full bg-gray-4 px-4 font-medium text-gray-12 hover:bg-gray-5"
             variant={"secondary"}
           >
             1 Credit

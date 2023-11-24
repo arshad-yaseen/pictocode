@@ -1,8 +1,15 @@
 import React, { useState } from "react"
+import Link from "next/link"
 import { ArrowTopRightIcon } from "@radix-ui/react-icons"
+import {
+  HOW_TO_ACCESS_GPT_4_POST,
+  OPENAI_USAGE_POLICIES,
+} from "~/constants/links"
+import { ERROR } from "~/constants/res-messages"
+import { Loader2Icon } from "lucide-react"
 import { toast } from "sonner"
 
-import {  isCorrectApiKey, validateApiKey } from "~/lib/ai"
+import { isCorrectApiKey, validateApiKey } from "~/lib/ai"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import {
@@ -15,10 +22,6 @@ import {
 } from "~/components/ui/dialog"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-import Link from "next/link"
-import { Loader2Icon } from "lucide-react"
-import { ERROR } from "~/constants/res-messages"
-import { HOW_TO_ACCESS_GPT_4_POST, OPENAI_USAGE_POLICIES } from "~/constants/links"
 
 const BringApiKey = () => {
   const [apiKey, setApiKey] = useState<string>("")
@@ -136,7 +139,11 @@ const BringApiKey = () => {
           {apiKeyNotSupported && (
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">{apiKeyNotSupported}</p>
-              <Link href={HOW_TO_ACCESS_GPT_4_POST} target="_blank" className="text-sm underline underline-offset-4">
+              <Link
+                href={HOW_TO_ACCESS_GPT_4_POST}
+                target="_blank"
+                className="text-sm underline underline-offset-4"
+              >
                 Learn more about this
               </Link>
             </div>
@@ -148,7 +155,11 @@ const BringApiKey = () => {
               className="rounded-full px-6 transition-colors"
               onClick={() => saveApiKey(apiKey)}
             >
-              <Loader2Icon className={saving ? "animate-spin h-4 w-4 inline-block mr-2" : "hidden"} />
+              <Loader2Icon
+                className={
+                  saving ? "mr-2 inline-block h-4 w-4 animate-spin" : "hidden"
+                }
+              />
               Save
             </Button>
           </div>
