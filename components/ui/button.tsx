@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default: "bg-gray-12 text-background shadow hover:bg-gray-12/90",
         error:
           "bg-error text-white shadow-small transition-colors hover:bg-error-hover",
-          "outline-error":
+        "outline-error":
           "border border-input bg-background text-error-foreground shadow-small transition-colors hover:bg-gray-1",
         outline:
           "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",

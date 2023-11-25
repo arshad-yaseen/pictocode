@@ -1,7 +1,7 @@
+import { SESSION_KEY } from "~/constants/misc"
 import { ServerResponse } from "~/server/utils"
 
 import { del, get, set } from "~/lib/session/session-store"
-import { SESSION_KEY } from "~/constants/misc"
 
 export async function POST(req: Request): Promise<Response> {
   const body = await req.json()

@@ -175,7 +175,7 @@ const BringApiKey = () => {
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">
                 We securely store your API key in session storage on server
-                side. This means it's kept safe during your active session and
+                side. This means it&apos;s kept safe during your active session and
                 is not exposed to the internet, ensuring its protection.
               </p>
               <p className="text-sm text-gray-9">
@@ -200,7 +200,7 @@ const BringApiKey = () => {
           <div className="flex w-full justify-end space-x-2">
             {isApiKeyFromSession && (
               <Button
-                className="border-error hover:bg-error-lighter rounded-full px-6 transition-colors"
+                className="rounded-full border-error px-6 transition-colors hover:bg-error-lighter"
                 variant={"outline-error"}
                 onClick={() => handleDelete()}
                 disabled={saving || deleting}

@@ -4,7 +4,6 @@ import Link from "next/link"
 
 import { siteConfig } from "~/config/site"
 import { Badge } from "~/components/ui/badge"
-import { Button } from "~/components/ui/button"
 import BringApiKey from "~/components/bring-api-key"
 
 const SiteHeader = () => {
