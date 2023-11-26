@@ -13,7 +13,7 @@ const UploadersSection = () => {
       <Input
         type="text"
         placeholder="Enter image URL or Website URL"
-        className="w-[500px] border-2 transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent"
+        className="w-full border-2 transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px]"
       />
       <p
         onClick={async () => {

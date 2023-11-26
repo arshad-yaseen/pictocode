@@ -112,11 +112,11 @@ const BringApiKey = () => {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="mx-3 rounded-full">
+        <Button className="w-full rounded-full md:mx-3 md:w-auto">
           {apiKey.length > 0 ? "Change" : "Bring"} OpenAI API Key
         </Button>
       </DialogTrigger>
-      <DialogContent className=" !rounded-xl p-12">
+      <DialogContent className=" md:!rounded-xl md:p-12">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-medium">
             OpenAI API key
@@ -175,8 +175,8 @@ const BringApiKey = () => {
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">
                 We securely store your API key in session storage on server
-                side. This means it&apos;s kept safe during your active session and
-                is not exposed to the internet, ensuring its protection.
+                side. This means it&apos;s kept safe during your active session
+                and is not exposed to the internet, ensuring its protection.
               </p>
               <p className="text-sm text-gray-9">
                 Our website is open source. Check out the code to see how we

@@ -53,7 +53,7 @@ export default function Home() {
   }, [throttledCode])
 
   return (
-    <main>
+    <main className="h-full w-full px-6 sm:px-10">
       {/* <iframe
         ref={iframeRef}
         title="Preview"
