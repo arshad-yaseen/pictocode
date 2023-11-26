@@ -1,39 +1,50 @@
-import { SESSION_KEY } from "~/constants/misc"
-import { ServerResponse } from "~/server/utils"
-
-import { del, get, set } from "~/lib/session/session-store"
+import { ServerResponse } from "~/server/utils";
+import { del, getWithDecryption, setWithEncryption } from "~/lib/session-store";
+import { ERROR, SUCCESS } from "~/constants/res-messages";
+import { env } from "~/env.mjs";
 
 export async function POST(req: Request): Promise<Response> {
-  const body = await req.json()
-  const { apiKey } = body
+  try {
+    const body = await req.json();
+    const { apiKey } = body;
 
-  if (!apiKey) {
-    return ServerResponse.badRequest("Missing API key")
+    if (!apiKey) {
+      return ServerResponse.badRequest(ERROR.MISSING_API_KEY);
+    }
+
+    setWithEncryption(env.API_KEY_SESSION_KEY, apiKey);
+
+    return ServerResponse.success({
+      body: { message: ERROR.API_KEY_NOT_STORED },
+    });
+  } catch (error) {
+    return ServerResponse.internalServerError(error instanceof Error ? error.message : String(error));
   }
-
-  await set(SESSION_KEY, apiKey)
-
-  return ServerResponse.success({
-    body: {
-      message: "API key stored",
-    },
-  })
 }
 
 export async function GET(): Promise<Response> {
-  const apiKey = await get(SESSION_KEY)
-  return ServerResponse.success({
-    body: {
-      apiKey,
-    },
-  })
+  try {
+    const apiKey = getWithDecryption(env.API_KEY_SESSION_KEY) || '';
+
+    if (!apiKey) {
+      return ServerResponse.notFound(ERROR.API_KEY_NOT_FOUND);
+    }
+
+    return ServerResponse.success({
+      body: { apiKey },
+    });
+  } catch (error) {
+    return ServerResponse.internalServerError(error instanceof Error ? error.message : String(error));
+  }
 }
 
 export async function DELETE(): Promise<Response> {
-  await del(SESSION_KEY, "")
-  return ServerResponse.success({
-    body: {
-      message: "API key deleted",
-    },
-  })
+  try {
+    del(env.API_KEY_SESSION_KEY);
+    return ServerResponse.success({
+      body: { message: SUCCESS.API_KEY_DELETED },
+    });
+  } catch (error) {
+    return ServerResponse.error((error as any).message || String(error), (error as any).status ?? 500);
+  }
 }

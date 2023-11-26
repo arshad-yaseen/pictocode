@@ -86,7 +86,7 @@ export async function fetchOpenAI({
 }
 
 export const isCorrectApiKey = (apiKey: string | undefined): boolean => {
-  return !!apiKey && apiKey.startsWith("sk-")
+  return !!apiKey && apiKey.startsWith("sk-") && apiKey.length > 30
 }
 
 export const validateApiKey = async (

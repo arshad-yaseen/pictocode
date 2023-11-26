@@ -8,7 +8,7 @@ import UploadersSection from "~/components/uploaders-section"
 const SiteHero = () => {
   return (
     <div className="flex h-[93vh] w-full flex-col items-center space-y-6 pt-32">
-      <h1 className="text-center text-4xl font-medium tracking-tight">
+      <h1 className="text-center text-4xl font-semibold tracking-tight">
         Turn your designs into code. <br /> to any Framework.
       </h1>
       <p className="mt-4  text-center text-gray-9">

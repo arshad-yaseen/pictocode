@@ -16,20 +16,6 @@ const UploadersSection = () => {
         className="w-full border-2 transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px]"
       />
       <p
-        onClick={async () => {
-          const fetchRes = await fetchOpenAI({
-            openaiBody: {
-              messages: [
-                {
-                  role: "user",
-                  content: "Hello, world",
-                },
-              ],
-            },
-            streamResponse: false,
-          })
-          console.log(fetchRes)
-        }}
         className="my-4 text-gray-10"
       >
         or

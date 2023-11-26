@@ -78,6 +78,7 @@ const BringApiKey = () => {
 
     toast.success("API key saved successfully")
     setIsDialogOpen(false)
+    setIsApiKeyFromSession(true)
   }
 
   const handleDelete = async () => {
@@ -93,8 +94,17 @@ const BringApiKey = () => {
     }
 
     toast.success("API key deleted successfully")
-    setIsDialogOpen(false)
+    reset()
+  }
+
+  const reset = () => {
     setApiKey("")
+    setAccepted(false)
+    setIsSecureOpen(false)
+    setApiKeyNotSupported(null)
+    setSaving(false)
+    setDeleting(false)
+    setIsApiKeyFromSession(false)
   }
 
   useEffect(() => {
@@ -109,20 +119,21 @@ const BringApiKey = () => {
       })
   }, [])
 
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button className="w-full rounded-full md:mx-3 md:w-auto">
-          {apiKey.length > 0 ? "Change" : "Bring"} OpenAI API Key
+          {isApiKeyFromSession ? "Change" : "Bring"} OpenAI API Key
         </Button>
       </DialogTrigger>
       <DialogContent className=" md:!rounded-xl md:p-12">
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-medium">
+          <DialogTitle className="text-center text-2xl font-semibold">
             OpenAI API key
           </DialogTitle>
           <DialogDescription>
-            <p className="text-center text-gray-9">
+            <p className="text-center text-gray-9 tracking-tight">
               You need to bring your OpenAI API key to generate code.
             </p>
           </DialogDescription>
@@ -174,9 +185,7 @@ const BringApiKey = () => {
           {isSecureOpen && (
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">
-                We securely store your API key in session storage on server
-                side. This means it&apos;s kept safe during your active session
-                and is not exposed to the internet, ensuring its protection.
+              Your API key is exclusively stored within your own session, not on our servers, guaranteeing maximum security and privacy during your usage.
               </p>
               <p className="text-sm text-gray-9">
                 Our website is open source. Check out the code to see how we
@@ -216,7 +225,7 @@ const BringApiKey = () => {
               </Button>
             )}
             <Button
-              disabled={!accepted || apiKey.length < 20 || saving || deleting}
+              disabled={saving || deleting || !isCorrectApiKey(apiKey) || !accepted}
               className="rounded-full px-6 transition-colors"
               onClick={() => saveApiKey(apiKey)}
             >
