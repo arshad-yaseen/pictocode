@@ -1,19 +1,22 @@
-import { toast } from "sonner"
-import { cloudinary } from "~/lib/cloudinary"
 import { GET } from "~/utils/http.utils"
 import { fileToBase64, isImageUrl } from "~/utils/misc"
+import { toast } from "sonner"
+
+import { cloudinary } from "~/lib/cloudinary"
 
 interface ImageUrlResponse {
   screenshotUrl: string
 }
 
-export const getImageUrl =  async (url: string): Promise<string> => {
-  let imageUrl = ''
-  if(await isImageUrl(url)) {
+export const getImageUrl = async (url: string): Promise<string> => {
+  let imageUrl = ""
+  if (await isImageUrl(url)) {
     imageUrl = url
   } else {
     try {
-      const { screenshotUrl } = await GET<ImageUrlResponse>(`/api/screenshot?url=${url}`)
+      const { screenshotUrl } = await GET<ImageUrlResponse>(
+        `/api/screenshot?url=${url}`
+      )
       imageUrl = screenshotUrl
     } catch (error: any) {
       toast.error(error.message)

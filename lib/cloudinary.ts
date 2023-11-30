@@ -11,12 +11,12 @@ export const upload = async (base64: string) => {
         },
         body: JSON.stringify({
           upload_preset: env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
-          file: base64
+          file: base64,
         }),
       }
     )
 
-    if(!imageRes.ok) {
+    if (!imageRes.ok) {
       throw new Error(`HTTP error: ${imageRes.status} ${imageRes.statusText}`)
     }
 

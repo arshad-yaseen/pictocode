@@ -119,7 +119,6 @@ const BringApiKey = () => {
       })
   }, [])
 
-
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
@@ -133,7 +132,7 @@ const BringApiKey = () => {
             OpenAI API key
           </DialogTitle>
           <DialogDescription>
-            <p className="text-center text-gray-9 tracking-tight">
+            <p className="text-center tracking-tight text-gray-9">
               You need to bring your OpenAI API key to generate code.
             </p>
           </DialogDescription>
@@ -185,7 +184,9 @@ const BringApiKey = () => {
           {isSecureOpen && (
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">
-              Your API key is exclusively stored within your own session, not on our servers, guaranteeing maximum security and privacy during your usage.
+                Your API key is exclusively stored within your own session, not
+                on our servers, guaranteeing maximum security and privacy during
+                your usage.
               </p>
               <p className="text-sm text-gray-9">
                 Our website is open source. Check out the code to see how we
@@ -225,7 +226,9 @@ const BringApiKey = () => {
               </Button>
             )}
             <Button
-              disabled={saving || deleting || !isCorrectApiKey(apiKey) || !accepted}
+              disabled={
+                saving || deleting || !isCorrectApiKey(apiKey) || !accepted
+              }
               className="rounded-full px-6 transition-colors"
               onClick={() => saveApiKey(apiKey)}
             >

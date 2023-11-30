@@ -1,6 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { EqualIcon } from "lucide-react"
 
 import { siteConfig } from "~/config/site"
@@ -8,7 +9,6 @@ import { Badge } from "~/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
 import BringApiKey from "~/components/bring-api-key"
 import MobileNav from "~/components/mobile-nav"
-import { GitHubLogoIcon } from "@radix-ui/react-icons"
 
 const SiteHeader = () => {
   return (
@@ -25,9 +25,9 @@ const SiteHeader = () => {
           <Link
             href={siteConfig.links.github}
             target="_blank"
-            className="px-3 py-2 font-medium text-gray-12 items-center flex transition-colors hover:text-gray-12/80"
+            className="flex items-center px-3 py-2 font-medium text-gray-12 transition-colors hover:text-gray-12/80"
           >
-            <GitHubLogoIcon className="mr-2 h-4 w-4 inline-block" />
+            <GitHubLogoIcon className="mr-2 inline-block h-4 w-4" />
             Github
           </Link>
           <BringApiKey />

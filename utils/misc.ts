@@ -1,4 +1,4 @@
-import * as  crypto from "crypto"
+import * as crypto from "crypto"
 import { ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -35,44 +35,52 @@ export function generateUniqueString(length: number) {
 
 export const isImageUrl = async (url: string): Promise<boolean> => {
   // 1. Check URL extension
-  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.svg'];
-  const pathname = new URL(url).pathname;
-  if (imageExtensions.some(ext => pathname.endsWith(ext))) {
-      return true;
+  const imageExtensions = [
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".bmp",
+    ".webp",
+    ".svg",
+  ]
+  const pathname = new URL(url).pathname
+  if (imageExtensions.some((ext) => pathname.endsWith(ext))) {
+    return true
   }
 
   try {
-      // 2. Perform a HEAD request to get headers
-      const response = await fetch(url, { method: 'HEAD' });
-      const contentType = response.headers.get('Content-Type');
-      if (contentType && contentType.startsWith('image/')) {
-          return true;
-      }
+    // 2. Perform a HEAD request to get headers
+    const response = await fetch(url, { method: "HEAD" })
+    const contentType = response.headers.get("Content-Type")
+    if (contentType && contentType.startsWith("image/")) {
+      return true
+    }
   } catch (error) {
-      console.error('Error during HEAD request:', error);
+    console.error("Error during HEAD request:", error)
   }
 
   // 3. Fallback check (optional, might involve CORS issues)
   // This part can be implemented if necessary, involves more complex logic
   // like fetching a small part of the content and checking its nature.
-  return false; // If all checks fail, return false
+  return false // If all checks fail, return false
 }
 
 export const isValidUrl = (url: string) => {
   try {
-      let parsedUrl = new URL(url);
-      if (!parsedUrl.protocol || !parsedUrl.hostname) {
-          return false;
-      }
-      if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
-          return false;
-      }
-      if (!parsedUrl.hostname.includes('.')) {
-          return false;
-      }
-      return true;
+    let parsedUrl = new URL(url)
+    if (!parsedUrl.protocol || !parsedUrl.hostname) {
+      return false
+    }
+    if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
+      return false
+    }
+    if (!parsedUrl.hostname.includes(".")) {
+      return false
+    }
+    return true
   } catch (e) {
-      return false;
+    return false
   }
 }
 
@@ -81,6 +89,6 @@ export const fileToBase64 = (file: File): Promise<string> => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => resolve(reader.result as string)
-    reader.onerror = error => reject(error)
+    reader.onerror = (error) => reject(error)
   })
 }

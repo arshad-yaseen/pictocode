@@ -24,7 +24,6 @@ interface IUrlFormProps {
 }
 
 interface IFrameworkSelectProps {
-  frameworks: { style: string; library: string }
   setFrameworks: React.Dispatch<
     React.SetStateAction<{ style: string; library: string }>
   >
@@ -83,13 +82,11 @@ export const UploadersSection = () => {
         className="mx-3 h-10 rounded-full px-6"
         disabled={uploading}
       >
-        {
-          uploading ? (
-            <LoadingIcon className="mr-2 h-4 w-4" loading={uploading} />
-          ) : (
-            <UploadIcon className="mr-2 h-4 w-4" />
-          )
-        }
+        {uploading ? (
+          <LoadingIcon className="mr-2 h-4 w-4" loading={uploading} />
+        ) : (
+          <UploadIcon className="mr-2 h-4 w-4" />
+        )}
         Upload Image
       </Button>
       <input
@@ -99,7 +96,7 @@ export const UploadersSection = () => {
         className="hidden"
         ref={inputRef}
       />
-      <FrameworkSelect frameworks={frameworks} setFrameworks={setFrameworks} />
+      <FrameworkSelect setFrameworks={setFrameworks} />
     </section>
   )
 }
@@ -135,7 +132,6 @@ const UrlForm = ({ url, setUrl, onUrlSubmit, submitting }: IUrlFormProps) => {
 }
 
 const FrameworkSelect = ({
-  frameworks,
   setFrameworks,
 }: IFrameworkSelectProps) => {
   const onValueChange = (value: string) => {
