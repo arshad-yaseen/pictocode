@@ -21,7 +21,7 @@ async function request<ResponseType, BodyType = undefined>(
   });
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
   }
 
   return response.json() as Promise<ResponseType>;

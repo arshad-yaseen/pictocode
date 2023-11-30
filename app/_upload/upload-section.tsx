@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react"
+import { useRouter } from "next/navigation"
 import { UploadIcon } from "@radix-ui/react-icons"
-import { cn, isValidUrl } from "~/utils/misc"
+import { isValidUrl } from "~/utils/misc"
 
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
@@ -11,9 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
-
-import { getImageUrl } from "./utils"
 import { LoadingIcon } from "~/components/loading-icon"
+
+import { getImageUrl, uploadImage } from "./utils"
 
 interface IUrlFormProps {
   url: string
@@ -37,41 +38,68 @@ const FRAMWORKS = {
 export const UploadersSection = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [submitting, setSubmitting] = useState<boolean>(false)
+  const [uploading, setUploading] = useState<boolean>(false)
   const [url, setUrl] = useState<string>("")
   const [frameworks, setFrameworks] = useState<{
     style: string
     library: string
   }>({ style: "Tailwind CSS", library: "React" })
+  const router = useRouter()
 
   const handleUrlSubmit = async () => {
     setSubmitting(true)
     const imageUrl = await getImageUrl(url)
     setSubmitting(false)
-    if(!imageUrl) return
-    console.log(imageUrl);
-    
+    if (!imageUrl) return
+    router.push(
+      `/run?imageUrl=${imageUrl}&style=${frameworks.style}&library=${frameworks.library}`
+    )
+  }
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploading(true)
+    const imageUrl = await uploadImage(file)
+    setUploading(false)
+    router.push(
+      `/run?imageUrl=${imageUrl}&style=${frameworks.style}&library=${frameworks.library}`
+    )
   }
 
   return (
     <section className="flex w-full flex-col items-center">
-      <UrlForm url={url} setUrl={setUrl} onUrlSubmit={handleUrlSubmit} submitting={submitting} />
-      <div className={cn(
-        "flex flex-col items-center transition-opacity duration-300",
-        { "opacity-0": submitting}
-      )}>
+      <UrlForm
+        url={url}
+        setUrl={setUrl}
+        onUrlSubmit={handleUrlSubmit}
+        submitting={submitting}
+      />
       <p className="my-4 text-gray-10" onClick={() => {}}>
         or
       </p>
       <Button
         onClick={() => inputRef.current?.click()}
         className="mx-3 h-10 rounded-full px-6"
+        disabled={uploading}
       >
-        <UploadIcon className="mr-2 h-4 w-4" />
+        {
+          uploading ? (
+            <LoadingIcon className="mr-2 h-4 w-4" loading={uploading} />
+          ) : (
+            <UploadIcon className="mr-2 h-4 w-4" />
+          )
+        }
         Upload Image
       </Button>
-      <input accept="image/*" type="file" className="hidden" ref={inputRef} />
+      <input
+        onChange={handleFileChange}
+        accept="image/*"
+        type="file"
+        className="hidden"
+        ref={inputRef}
+      />
       <FrameworkSelect frameworks={frameworks} setFrameworks={setFrameworks} />
-      </div>
     </section>
   )
 }
@@ -91,6 +119,8 @@ const UrlForm = ({ url, setUrl, onUrlSubmit, submitting }: IUrlFormProps) => {
         placeholder="Enter image URL or Website URL"
         className="flex-1 rounded-r-none border-2 border-r-transparent transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px]"
         onChange={(e) => setUrl(e.target.value)}
+        value={url}
+        autoComplete="off"
       />
       <Button
         type="submit"
