@@ -131,9 +131,7 @@ const UrlForm = ({ url, setUrl, onUrlSubmit, submitting }: IUrlFormProps) => {
   )
 }
 
-const FrameworkSelect = ({
-  setFrameworks,
-}: IFrameworkSelectProps) => {
+const FrameworkSelect = ({ setFrameworks }: IFrameworkSelectProps) => {
   const onValueChange = (value: string) => {
     const [framework, type] = value.split(":")
     setFrameworks((prev) => ({
