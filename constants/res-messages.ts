@@ -17,4 +17,6 @@ export const ERROR = {
   API_KEY_NOT_DELETED: "API key not deleted",
   MISSING_OPENAI_BODY: "Missing openai_body",
   MISSING_OPENAI_MESSAGES: "Missing openai_body.messages",
+  MISSING_URL: "URL parameter is required",
+  SCREENSHOT_NOT_GENERATED: "Cannot take screenshot",
 }

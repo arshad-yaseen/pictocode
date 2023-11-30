@@ -1,5 +1,5 @@
 import { siteConfig } from "~/config/site"
-import { cn } from "~/lib/utils"
+import { cn } from "~/utils/misc"
 
 import "~/styles/globals.css"
 import "~/styles/components.css"

@@ -3,7 +3,7 @@
 import React from "react"
 
 import { siteConfig } from "~/config/site"
-import UploadersSection from "~/components/uploaders-section"
+import { UploadersSection } from "~/app/_upload/upload-section"
 
 const SiteHero = () => {
   return (

@@ -1,7 +1,7 @@
 import * as React from "react"
 import TextareaAutosize from "react-textarea-autosize"
 
-import { cn } from "../../lib/utils"
+import { cn } from "~/utils/misc"
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
 
 import { siteConfig } from "~/config/site"
-import { cn } from "~/lib/utils"
+import { cn } from "~/utils/misc"
 import { buttonVariants } from "~/components/ui/button"
 import BringApiKey from "~/components/bring-api-key"
 import { HeaderLogo } from "~/components/site-header"
