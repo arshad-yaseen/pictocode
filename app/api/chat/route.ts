@@ -4,12 +4,10 @@ import { OpenAIBody } from "~/types"
 import { OpenAIStream, StreamingTextResponse } from "ai"
 import OpenAI from "openai"
 
-import { env } from "~/env.mjs"
 import { models } from "~/config/ai"
 import { isCorrectApiKey } from "~/lib/ai"
-import { get } from "~/lib/session-store"
-
-export const runtime = "edge"
+import { getWithDecryption } from "~/lib/session-store"
+import { env } from "~/env.mjs"
 
 export async function POST(req: Request): Promise<Response> {
   try {
@@ -32,8 +30,8 @@ export async function POST(req: Request): Promise<Response> {
       return ServerResponse.badRequest(ERROR.MISSING_OPENAI_MESSAGES)
     }
 
-    const OPENAI_API_KEY = api_key || get(env.API_KEY_SESSION_KEY)
-
+    const OPENAI_API_KEY = api_key || getWithDecryption(env.API_KEY_SESSION_KEY)
+    
     if (!OPENAI_API_KEY) {
       return ServerResponse.unauthorized(ERROR.MISSING_API_KEY)
     }

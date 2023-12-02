@@ -7,7 +7,7 @@ import { example_vision_api_messages, models } from "~/config/ai"
 type OpenAIResponse = {
   isSuccess: boolean
   message: {
-    content: string
+    content: string | ReadableStream<Uint8Array>
     role: string
   } | null
   error: {
@@ -18,25 +18,25 @@ type OpenAIResponse = {
 
 type OpenAIOptions = {
   apiKey?: string
-  openaiBody: OpenAIBody
+  body: OpenAIBody
   type?: "chat" | "vision"
   streamResponse?: boolean
 }
 
-export async function fetchOpenAI({
+export async function createChat({
   apiKey,
-  openaiBody,
+  body,
   type = "chat",
   streamResponse = true,
 }: OpenAIOptions): Promise<OpenAIResponse> {
   try {
-    const response = await fetch("/api/openai", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        openai_body: openaiBody,
+        openai_body: body,
         api_key: apiKey,
         type: type,
         stream_response: streamResponse,
@@ -50,19 +50,29 @@ export async function fetchOpenAI({
         isSuccess: false,
         message: null,
         error: {
-          message: errorData.error?.message || "An error occurred",
+          message: errorData?.error?.message || "An error occurred",
           statusCode: response.status,
         },
       }
     }
 
-    const data = await response.json()
+    let data;
+
+    if (streamResponse) {
+      data = {
+        content: response.body,
+        role: "assistant",
+      }
+    } else {
+      const res_json = await response.json()
+      data = res_json.choices[0].message
+    }
 
     // Check if the data returned is as expected.
     if (data) {
       return {
         isSuccess: true,
-        message: data.choices[0].message,
+        message: data,
         error: null,
       }
     } else {
@@ -96,12 +106,12 @@ export const validateApiKey = async (
   message: string | undefined
   code: string
 }> => {
-  const openaiBody = {
+  const body = {
     messages: example_vision_api_messages as Array<ChatCompletionMessageParam>,
   }
-  const isSupportedKey = await fetchOpenAI({
+  const isSupportedKey = await createChat({
     apiKey,
-    openaiBody,
+    body,
     streamResponse: false,
     type: "vision",
   })
