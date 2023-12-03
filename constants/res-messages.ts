@@ -19,4 +19,5 @@ export const ERROR = {
   MISSING_OPENAI_MESSAGES: "Missing openai_body.messages",
   MISSING_URL: "URL parameter is required",
   SCREENSHOT_NOT_GENERATED: "Cannot take screenshot",
+  API_KET_NOT_FETCHED: "Could not fetch API key",
 }

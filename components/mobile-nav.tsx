@@ -22,7 +22,7 @@ const MobileNav = () => {
             target="_blank"
             className={cn(
               buttonVariants({ variant: "secondary" }),
-              "w-full rounded-full text-gray-12"
+              "w-full rounded-lg text-gray-12"
             )}
           >
             <GitHubLogoIcon className="mr-2 h-4 w-4" />

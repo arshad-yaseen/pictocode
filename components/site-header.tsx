@@ -16,12 +16,6 @@ const SiteHeader = () => {
       <HeaderLogo />
       <div className="col-span-1 h-12 items-center justify-end md:col-span-2 ">
         <nav className=" hidden items-center justify-end md:flex">
-          <Badge
-            className="mx-3 h-8 rounded-full bg-gray-4 px-4 font-medium text-gray-12 hover:bg-gray-5"
-            variant={"secondary"}
-          >
-            1 Credit
-          </Badge>
           <Link
             href={siteConfig.links.github}
             target="_blank"

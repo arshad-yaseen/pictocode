@@ -15,6 +15,7 @@ import {
 import { LoadingIcon } from "~/components/loading-icon"
 
 import { getImageUrl, uploadImage } from "./utils"
+import { TECHNOLOGIES } from "~/constants/prompts"
 
 interface IUrlFormProps {
   url: string
@@ -23,15 +24,8 @@ interface IUrlFormProps {
   submitting: boolean
 }
 
-interface IFrameworkSelectProps {
-  setFrameworks: React.Dispatch<
-    React.SetStateAction<{ style: string; library: string }>
-  >
-}
-
-const FRAMWORKS = {
-  style: ["Tailwind CSS", "CSS"],
-  library: ["React", "HTML"],
+interface ITechnologiesSelectProps {
+  setTechnology: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const UploadersSection = () => {
@@ -39,20 +33,15 @@ export const UploadersSection = () => {
   const [submitting, setSubmitting] = useState<boolean>(false)
   const [uploading, setUploading] = useState<boolean>(false)
   const [url, setUrl] = useState<string>("")
-  const [frameworks, setFrameworks] = useState<{
-    style: string
-    library: string
-  }>({ style: "Tailwind CSS", library: "React" })
-  const router = useRouter()
+  const [technology, setTechnology] = useState<string>(TECHNOLOGIES[0].id)
+  const { push } = useRouter()
 
   const handleUrlSubmit = async () => {
     setSubmitting(true)
     const imageUrl = await getImageUrl(url)
     setSubmitting(false)
     if (!imageUrl) return
-    router.push(
-      `/run?imageUrl=${imageUrl}&style=${frameworks.style}&library=${frameworks.library}`
-    )
+    push(`/run?imageUrl=${imageUrl}&technology_id=${technology}`)
   }
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,9 +50,7 @@ export const UploadersSection = () => {
     setUploading(true)
     const imageUrl = await uploadImage(file)
     setUploading(false)
-    router.push(
-      `/run?imageUrl=${imageUrl}&style=${frameworks.style}&library=${frameworks.library}`
-    )
+    push(`/run?imageUrl=${imageUrl}&technology_id=${technology}`)
   }
 
   return (
@@ -79,7 +66,7 @@ export const UploadersSection = () => {
       </p>
       <Button
         onClick={() => inputRef.current?.click()}
-        className="mx-3 h-10 rounded-full px-6"
+        className="mx-3 h-10 rounded-lg px-6"
         disabled={uploading}
       >
         {uploading ? (
@@ -96,7 +83,7 @@ export const UploadersSection = () => {
         className="hidden"
         ref={inputRef}
       />
-      <FrameworkSelect setFrameworks={setFrameworks} />
+      <TechnologiesSelect setTechnology={setTechnology} />
     </section>
   )
 }
@@ -108,13 +95,13 @@ const UrlForm = ({ url, setUrl, onUrlSubmit, submitting }: IUrlFormProps) => {
         e.preventDefault()
         onUrlSubmit?.()
       }}
-      className="flex"
+      className="flex space-x-2"
     >
       <Input
         type="text"
         name="url"
         placeholder="Enter image URL or Website URL"
-        className="flex-1 rounded-r-none border-2 border-r-transparent transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px]"
+        className="flex-1 border-2  transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px]"
         onChange={(e) => setUrl(e.target.value)}
         value={url}
         autoComplete="off"
@@ -122,7 +109,7 @@ const UrlForm = ({ url, setUrl, onUrlSubmit, submitting }: IUrlFormProps) => {
       <Button
         type="submit"
         disabled={!isValidUrl(url) || submitting}
-        className="h-full rounded-l-none border-2 border-primary px-6 transition-all duration-300"
+        className="h-full  border-2 border-primary px-6 transition-all duration-300"
       >
         <LoadingIcon className="mr-2 h-4 w-4" loading={submitting} />
         Submit
@@ -131,37 +118,17 @@ const UrlForm = ({ url, setUrl, onUrlSubmit, submitting }: IUrlFormProps) => {
   )
 }
 
-const FrameworkSelect = ({ setFrameworks }: IFrameworkSelectProps) => {
-  const onValueChange = (value: string) => {
-    const [framework, type] = value.split(":")
-    setFrameworks((prev) => ({
-      ...prev,
-      [type]: framework,
-    }))
-  }
-
+const TechnologiesSelect = ({ setTechnology }: ITechnologiesSelectProps) => {
   return (
-    <div className="grid w-[500px] grid-cols-2 gap-2 py-10">
-      <Select onValueChange={onValueChange} defaultValue="React:library">
-        <SelectTrigger className="col-span-1">
+    <div className="grid w-[300px] grid-cols-2 gap-2 py-10">
+      <Select onValueChange={setTechnology} defaultValue={TECHNOLOGIES[0].id}>
+        <SelectTrigger className="col-span-2 h-10">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {FRAMWORKS.library.map((framework, index) => (
-            <SelectItem key={index} value={`${framework}:library`}>
-              {framework}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select onValueChange={onValueChange} defaultValue="Tailwind CSS:style">
-        <SelectTrigger className="col-span-1">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {FRAMWORKS.style.map((framework, index) => (
-            <SelectItem key={index} value={`${framework}:style`}>
-              {framework}
+          {TECHNOLOGIES.map((technology, index) => (
+            <SelectItem key={index} value={technology.id}>
+              {technology.name}
             </SelectItem>
           ))}
         </SelectContent>

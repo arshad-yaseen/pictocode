@@ -6,10 +6,11 @@ import {
   OPENAI_USAGE_POLICIES,
 } from "~/constants/links"
 import { ERROR } from "~/constants/res-messages"
+import { DELETE, GET, POST } from "~/utils/http.utils"
 import { Loader2Icon } from "lucide-react"
 import { toast } from "sonner"
 
-import { isCorrectApiKey, validateApiKey } from "~/lib/ai"
+import { isCorrectApiKey, validateApiKey } from "~/utils/ai"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import {
@@ -61,20 +62,16 @@ const BringApiKey = () => {
   }
 
   const save = async () => {
-    const res = await fetch("/api/api-key", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ apiKey }),
-    })
+    await POST(
+      "/api/api-key",
+      { apiKey },
+      {
+        error: ERROR.API_KEY_NOT_SAVED,
+        showErrorToast: true,
+      }
+    )
 
     setSaving(false)
-
-    if (!res.ok) {
-      toast.error(ERROR.API_KEY_NOT_SAVED)
-      return
-    }
 
     toast.success("API key saved successfully")
     setIsDialogOpen(false)
@@ -84,14 +81,11 @@ const BringApiKey = () => {
   const handleDelete = async () => {
     if (deleting) return
     setDeleting(true)
-    const res = await fetch("/api/api-key", {
-      method: "DELETE",
+    await DELETE("/api/api-key", {
+      error: ERROR.API_KEY_NOT_DELETED,
+      showErrorToast: true,
     })
     setDeleting(false)
-    if (!res.ok) {
-      toast.error(ERROR.API_KEY_NOT_DELETED)
-      return
-    }
 
     toast.success("API key deleted successfully")
     reset()
@@ -108,25 +102,28 @@ const BringApiKey = () => {
   }
 
   useEffect(() => {
-    fetch("/api/api-key")
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.apiKey) {
-          setApiKey(res.apiKey)
-          setAccepted(true)
-          setIsApiKeyFromSession(true)
-        }
-      })
+    getApiKeyFromSession()
   }, [])
+
+  const getApiKeyFromSession = async () => {
+    const key_res = await GET<{ apiKey: string }>("/api/api-key", {
+      error: ERROR.API_KET_NOT_FETCHED,
+    })
+    if (key_res.apiKey) {
+      setAccepted(true)
+      setApiKey(key_res.apiKey)
+      setIsApiKeyFromSession(true)
+    }
+  }
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full rounded-full md:mx-3 md:w-auto">
+        <Button className="w-full rounded-lg md:mx-3 md:w-auto">
           {isApiKeyFromSession ? "Change" : "Bring"} OpenAI API Key
         </Button>
       </DialogTrigger>
-      <DialogContent className=" md:!rounded-xl md:p-12">
+      <DialogContent className=" md:!rounded-xl md:p-8">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-semibold">
             OpenAI API key
@@ -210,7 +207,7 @@ const BringApiKey = () => {
           <div className="flex w-full justify-end space-x-2">
             {isApiKeyFromSession && (
               <Button
-                className="rounded-full border-error px-6 transition-colors hover:bg-error-lighter"
+                className="rounded-lg border-error px-6 transition-colors hover:bg-error-lighter"
                 variant={"outline-error"}
                 onClick={() => handleDelete()}
                 disabled={saving || deleting}
@@ -229,7 +226,7 @@ const BringApiKey = () => {
               disabled={
                 saving || deleting || !isCorrectApiKey(apiKey) || !accepted
               }
-              className="rounded-full px-6 transition-colors"
+              className="rounded-lg px-6 transition-colors"
               onClick={() => saveApiKey(apiKey)}
             >
               <Loader2Icon
