@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useCallback, useEffect, useRef } from "react"
 import { useSearchParams } from "next/navigation"
 import { buildPrompt, createChat } from "~/utils/ai"
-import { PlayIcon, SquareIcon } from "lucide-react"
+import { Code2Icon, CodepenIcon, PlayIcon, SquareIcon } from "lucide-react"
 
-import useThrottle from "~/hooks/use-throttle"
 import { Button } from "~/components/ui/button"
 import { LoadingIcon } from "~/components/loading-icon"
+import _ from "lodash"
 
 const tailwindCssLink = '<script src="https://cdn.tailwindcss.com"></script>'
 
@@ -16,23 +16,36 @@ const RunPage = () => {
   const { imageUrl, technology_id } = Object.fromEntries(searchParams)
   const [loadingText, setLoadingText] = React.useState("")
   const [isRunning, setIsRunning] = React.useState(false)
-  const iframeRef = useRef<HTMLIFrameElement | null>(null)
-  const [finalCode, setFinalCode] = React.useState("")
-
+  const iframeVisibleRef = useRef<HTMLIFrameElement | null>(null);
+  const iframeBufferRef = useRef<HTMLIFrameElement | null>(null);
+  
   const aiResponseRef = useRef("")
+  
+  // Function to swap the iframes
+  const swapIFrames = () => {
+    if (iframeVisibleRef.current && iframeBufferRef.current) {
+      // Swap the iframe references
+      [iframeVisibleRef.current, iframeBufferRef.current] = [iframeBufferRef.current, iframeVisibleRef.current];
+
+      // Apply CSS to transition the visibility
+      iframeVisibleRef.current.style.opacity = '1';
+      iframeBufferRef.current.style.opacity = '0';
+    }
+  };
+
+  const debounceIframeUpdate = useCallback(_.debounce((code: string) => {
+    const iframe = iframeBufferRef.current;
+    if (iframe && iframe.contentWindow && iframe.contentDocument) {
+      iframe.contentDocument.open();
+      iframe.contentDocument.write(tailwindCssLink + code);
+      iframe.contentDocument.close();
+      swapIFrames();
+    }
+  }, 100), []);
 
   const updateIFrame = (code: string) => {
-    const iframe = iframeRef.current
-    if (iframe && iframe.contentDocument) {
-      const doc = iframe.contentDocument
-      doc.open()
-      doc.write(tailwindCssLink)
-      doc.write(code)
-      doc.close()
-    }
-  }
-
-  const updateIFrameThrottled = useThrottle(updateIFrame, 200)
+    debounceIframeUpdate(code);
+  };
 
   const doChat = async () => {
     const response = await createChat({
@@ -52,6 +65,7 @@ const RunPage = () => {
                   detail: "high",
                 },
               },
+              
             ],
           },
         ],
@@ -74,22 +88,16 @@ const RunPage = () => {
       const { value, done: doneReading } = (await reader?.read()) as any
       done = doneReading
       const chunkValue = decoder.decode(value)
-      aiResponseRef.current += chunkValue
-      updateIFrameThrottled(aiResponseRef.current)
+      aiResponseRef.current += chunkValue;
+      updateIFrame(aiResponseRef.current);
     }
-
-    setFinalCode(aiResponseRef.current)
-    console.log(aiResponseRef.current);
     
-    setLoadingText("")
-    setIsRunning(false)
-    clearTimeout(timeout)
+   // Clear loading state
+   setLoadingText('');
+   setIsRunning(false);
+   clearTimeout(timeout);
   }
 
-  useEffect(() => {
-    // Initial iframe setup
-    updateIFrame("")
-  }, [])
 
   const handleStart = () => {
     setIsRunning(true)
@@ -105,7 +113,7 @@ const RunPage = () => {
   return (
     <main className="flex h-screen w-full">
       <div className="flex h-full w-[300px] flex-col items-center border-r px-4">
-        <div className="gradient-box relative mt-4 w-fit overflow-hidden rounded-[10px] p-1.5 shadow-dialog">
+        <div className="gradient-box relative mt-4 w-fit overflow-hidden rounded-[10px] p-1.5 shadow-tooltip">
           <img
             src={imageUrl}
             alt="run_image"
@@ -118,7 +126,8 @@ const RunPage = () => {
               handleStart()
             }
           }}
-          className="mt-4 w-full"
+          className="mt-4 w-full h-10"
+          variant={isRunning ? "default" : "outline"}
         >
           {isRunning ? (
             <SquareIcon className="mr-2 h-4 w-4" />
@@ -133,12 +142,31 @@ const RunPage = () => {
             {loadingText}
           </div>
         )}
+        <Button
+          className="mt-4 w-full h-10"
+        >
+            <Code2Icon className="mr-2 h-4 w-4" />
+            Code
+        </Button>
+        <Button
+          className="mt-4 w-full h-10"
+        >
+            <CodepenIcon className="mr-2 h-4 w-4" />
+            Open in CodePen
+        </Button>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 relative">
         <iframe
-          ref={iframeRef}
-          title="Preview"
-          className="h-full w-full"
+          ref={iframeVisibleRef}
+          title="Visible Preview"
+          className="absolute top-0 left-0 h-full w-full transition-opacity duration-500"
+          style={{ opacity: '1' }} // Visible iframe
+        ></iframe>
+        <iframe
+          ref={iframeBufferRef}
+          title="Buffer Preview"
+          className="absolute top-0 left-0 h-full w-full transition-opacity duration-500"
+          style={{ opacity: '0' }} // Hidden iframe, used for buffering
         ></iframe>
       </div>
     </main>

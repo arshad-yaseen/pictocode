@@ -1,21 +1,28 @@
-import { useRef } from 'react';
+import React from "react";
 
-// Define a generic type for the callback function
-type CallbackFunction = (...args: any[]) => void;
+// Updates take effect immediately if the last update was more than {interval} ago.
+// Otherwise, updates are throttled to {interval}. The latest value is always sent.
+// The last update always gets executed, with potentially a {interval} delay.
+export function useThrottle(value: string, interval = 500) {
+  const [throttledValue, setThrottledValue] = React.useState(value);
+  const lastUpdated = React.useRef<number | null>(null);
 
-const useThrottle = (callback: CallbackFunction, delay: number): CallbackFunction => {
-  const throttleTimeout = useRef<NodeJS.Timeout | null>(null);
+  React.useEffect(() => {
+    const now = performance.now();
 
-  const throttledFunction: CallbackFunction = (...args) => {
-    if (!throttleTimeout.current) {
-      throttleTimeout.current = setTimeout(() => {
-        callback(...args);
-        throttleTimeout.current = null;
-      }, delay);
+    if (!lastUpdated.current || now >= lastUpdated.current + interval) {
+      lastUpdated.current = now;
+      setThrottledValue(value);
+    } else {
+      const id = window.setTimeout(() => {
+        lastUpdated.current = now;
+        setThrottledValue(value);
+      }, interval);
+
+      return () => window.clearTimeout(id);
     }
-  };
+  }, [value, interval]);
 
-  return throttledFunction;
-};
-
+  return throttledValue;
+}
 export default useThrottle;

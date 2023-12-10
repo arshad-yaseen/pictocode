@@ -1,0 +1,80 @@
+code .line {
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    font-size: 13px;
+    line-height: 20px;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    padding: 0.5px 2.5rem 0.5px 1.5rem;
+  }
+  
+  code {
+    counter-reset: line;
+  }
+  
+  code .line::before {
+    counter-increment: line;
+    content: counter(line);
+    width: 16px;
+    font-size: 13px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: right;
+    flex-shrink: 0;
+    margin-right: 1.2rem;
+    color: var(--gray9);
+  }
+  
+  code .hide-line::before {
+    content: "";
+    width: 0px;
+    display: inline-block;
+    margin-right: 0.2rem;
+  }
+  
+
+code .highlight-line {
+    @apply border-l-2 border-[#A67C52] bg-[#F4F2EF] pr-6 dark:bg-[#272727];
+  }
+  
+  :root {
+    /* Light Mode Colors - Unchanged from Previous Version */
+    --cortex-earthy-primary: #276b4e; /* Deep forest green */
+    --cortex-earthy-secondary: #c85c1a; /* Rustic orange */
+    --cortex-earthy-tertiary: #79bde6; /* Darker sky blue */
+  
+    --cortex-earthy-primary-dark: #2e8b57; /* Sea green */
+    --cortex-earthy-secondary-dark: #d2691e; /* Chocolate */
+    --cortex-earthy-tertiary-dark: #87ceeb; /* Sky blue */
+  }
+  
+  /* Primary Highlight: Keywords, Functions, Literals, Names, Titles, Built-ins, Types */
+  .hljs-keyword,
+  .hljs-function,
+  .hljs-literal,
+  .hljs-name,
+  .hljs-title,
+  .hljs-built_in,
+  .hljs-type {
+    @apply text-[var(--cortex-earthy-primary)] dark:text-[var(--cortex-earthy-primary-dark)];
+  }
+  
+  /* Secondary Highlight: Strings and Variables */
+  .hljs-string,
+  .hljs-attr,
+  .hljs-variable,
+  .hljs-template-variable {
+    @apply text-[var(--cortex-earthy-secondary)] dark:text-[var(--cortex-earthy-secondary-dark)];
+  }
+  
+  /* Tertiary Highlight: Comments and Meta */
+  .hljs-comment,
+  .hljs-quote,
+  .hljs-meta {
+    @apply text-[var(--cortex-earthy-tertiary)] dark:text-[var(--cortex-earthy-tertiary-dark)];
+  }
