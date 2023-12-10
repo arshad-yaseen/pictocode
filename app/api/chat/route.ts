@@ -5,7 +5,7 @@ import { OpenAIStream, StreamingTextResponse } from "ai"
 import OpenAI from "openai"
 
 import { models } from "~/config/ai"
-import { isCorrectApiKey } from "~/utils/ai"
+import { isCorrectApiKey } from "~/utils/ai.utils"
 import { getWithDecryption } from "~/lib/session-store"
 import { env } from "~/env.mjs"
 

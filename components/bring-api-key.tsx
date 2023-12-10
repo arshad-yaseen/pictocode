@@ -10,7 +10,7 @@ import { DELETE, GET, POST } from "~/utils/http.utils"
 import { Loader2Icon } from "lucide-react"
 import { toast } from "sonner"
 
-import { isCorrectApiKey, validateApiKey } from "~/utils/ai"
+import { isCorrectApiKey, validateApiKey } from "~/utils/ai.utils"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import {
