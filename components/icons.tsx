@@ -1,6 +1,4 @@
-import {
-  LucideProps,
-} from "lucide-react"
+import { LucideProps } from "lucide-react"
 
 export const Icons = {
   npm: (props: LucideProps) => (

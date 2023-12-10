@@ -8,7 +8,7 @@ interface ImageUrlResponse {
   screenshotUrl: string
 }
 
-type DocumentImagePasteCallback = (file: File) => void;
+type DocumentImagePasteCallback = (file: File) => void
 
 export const getImageUrl = async (url: string): Promise<string> => {
   let imageUrl = ""
@@ -34,28 +34,34 @@ export const uploadImage = async (file: File): Promise<string> => {
 }
 
 // Define a named function for handling the paste event
-const pasteHandler = (event: ClipboardEvent, callback: DocumentImagePasteCallback) => {
-  if (!event.clipboardData) return;
-  const items = event.clipboardData.items;
+const pasteHandler = (
+  event: ClipboardEvent,
+  callback: DocumentImagePasteCallback
+) => {
+  if (!event.clipboardData) return
+  const items = event.clipboardData.items
 
   for (const item of Object.values(items)) {
     if (item.type.indexOf("image") !== -1) {
-      const file = item.getAsFile();
-      if (!file) return;
-      callback(file);
-      break;
+      const file = item.getAsFile()
+      if (!file) return
+      callback(file)
+      break
     }
   }
-};
+}
 
 // Function to add the event listener
-export const addDocumentImagePasteListener = (callback: DocumentImagePasteCallback): () => void => {
+export const addDocumentImagePasteListener = (
+  callback: DocumentImagePasteCallback
+): (() => void) => {
   // Bind the callback with the event handler
-  const boundPasteHandler = (event: ClipboardEvent) => pasteHandler(event, callback);
-  document.addEventListener("paste", boundPasteHandler);
+  const boundPasteHandler = (event: ClipboardEvent) =>
+    pasteHandler(event, callback)
+  document.addEventListener("paste", boundPasteHandler)
 
   // Return a function to remove the event listener
   return () => {
-    document.removeEventListener("paste", boundPasteHandler);
-  };
-};
+    document.removeEventListener("paste", boundPasteHandler)
+  }
+}

@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react"
+import { cn } from "~/utils/misc"
 import { AnimatePresence, motion, MotionConfig } from "framer-motion"
 
 import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard"
-import { cn } from "~/utils/misc"
 import { Button } from "~/components/ui/button"
 
 export default function CopyButton({

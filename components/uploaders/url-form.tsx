@@ -1,15 +1,21 @@
-import React from "react";
-import { LoadingIcon } from "~/components/loading-icon";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { IUrlFormProps } from "~/interfaces";
-import { isValidUrl } from "~/utils/misc";
+import React from "react"
+import { IUrlFormProps } from "~/interfaces"
+import { isValidUrl } from "~/utils/misc"
 
-const UrlForm: React.FC<IUrlFormProps> = ({ url, setUrl, onUrlSubmit, submitting }) => {
+import { Button } from "~/components/ui/button"
+import { Input } from "~/components/ui/input"
+import { LoadingIcon } from "~/components/loading-icon"
+
+const UrlForm: React.FC<IUrlFormProps> = ({
+  url,
+  setUrl,
+  onUrlSubmit,
+  submitting,
+}) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await onUrlSubmit();
-  };
+    e.preventDefault()
+    await onUrlSubmit()
+  }
 
   return (
     <form onSubmit={handleSubmit} className="flex space-x-2">
@@ -31,7 +37,7 @@ const UrlForm: React.FC<IUrlFormProps> = ({ url, setUrl, onUrlSubmit, submitting
         Submit
       </Button>
     </form>
-  );
-};
+  )
+}
 
-export default UrlForm;
+export default UrlForm

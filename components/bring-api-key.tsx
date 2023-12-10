@@ -6,11 +6,11 @@ import {
   OPENAI_USAGE_POLICIES,
 } from "~/constants/links"
 import { ERROR } from "~/constants/res-messages"
+import { isCorrectApiKey, validateApiKey } from "~/utils/ai.utils"
 import { DELETE, GET, POST } from "~/utils/http.utils"
 import { Loader2Icon } from "lucide-react"
 import { toast } from "sonner"
 
-import { isCorrectApiKey, validateApiKey } from "~/utils/ai.utils"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import {
@@ -182,8 +182,7 @@ const BringApiKey = () => {
             <div className="flex flex-col space-y-5">
               <p className="text-sm text-gray-9">
                 Your API key is exclusively stored within your own session, not
-                on our servers, guaranteeing maximum security and privacy during
-                your usage.
+                on our servers, guaranteeing maximum security and privacy.
               </p>
               <p className="text-sm text-gray-9">
                 Our website is open source. Check out the code to see how we

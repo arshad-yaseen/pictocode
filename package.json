@@ -16,7 +16,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "next build && next start"
   },
   "dependencies": {

@@ -252,7 +252,6 @@
   background-image: var(--stripesDark), var(--rainbow);
 }
 
-
 iframe {
   transition: opacity 0.5s ease-in-out;
 }

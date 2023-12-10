@@ -6,7 +6,7 @@ export const generateCode = async ({
   updateIFrame,
   setIsRunning,
   setLoadingText,
-  codeRef
+  codeRef,
 }: {
   technology_id: string
   imageUrl: string
@@ -15,7 +15,6 @@ export const generateCode = async ({
   setLoadingText: React.Dispatch<React.SetStateAction<string>>
   codeRef: React.MutableRefObject<string>
 }): Promise<void> => {
-  
   const response = await createChat({
     body: {
       messages: [

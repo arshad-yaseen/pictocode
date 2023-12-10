@@ -28,7 +28,7 @@ const RunPage = () => {
       setLoadingText,
       updateIFrame,
       technology_id: technology_id,
-      codeRef
+      codeRef,
     }).finally(() => {
       setLoadingText("")
       setIsRunning(false)
@@ -56,14 +56,12 @@ const RunPage = () => {
           </div>
         )}
       </div>
-      <div className="flex flex-1 h-full flex-col">
-        <div className="h-12 min-w-full bg-white border-b">
-
-        </div>
-      <CodePreview
-        iframeVisibleRef={iframeVisibleRef}
-        iframeBufferRef={iframeBufferRef}
-      />
+      <div className="flex h-full flex-1 flex-col">
+        <div className="h-12 min-w-full border-b bg-white"></div>
+        <CodePreview
+          iframeVisibleRef={iframeVisibleRef}
+          iframeBufferRef={iframeBufferRef}
+        />
       </div>
     </main>
   )

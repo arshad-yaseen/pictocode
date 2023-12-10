@@ -1,11 +1,11 @@
-import React, {  useState } from "react"
+import React, { useState } from "react"
+import { useRouter } from "next/navigation"
 import { TECHNOLOGIES } from "~/constants/prompts"
+import { getImageUrl } from "~/utils/uploaders.utils"
 
 import FileDropzone from "~/components/uploaders/file-dropzone"
 import TechnologiesSelect from "~/components/uploaders/technologies-select"
 import UrlForm from "~/components/uploaders/url-form"
-import { getImageUrl } from "~/utils/uploaders.utils"
-import { useRouter } from "next/navigation"
 
 export const UploadersSection: React.FC = () => {
   const [submitting, setSubmitting] = useState(false)

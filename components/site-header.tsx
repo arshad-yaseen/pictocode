@@ -5,7 +5,6 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { EqualIcon } from "lucide-react"
 
 import { siteConfig } from "~/config/site"
-import { Badge } from "~/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
 import BringApiKey from "~/components/bring-api-key"
 import MobileNav from "~/components/mobile-nav"

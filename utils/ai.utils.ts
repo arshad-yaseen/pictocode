@@ -1,9 +1,9 @@
+import { PROMPTS } from "~/constants/prompts"
 import { ERROR, SUCCESS } from "~/constants/res-messages"
 import { OpenAIBody } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
 
 import { example_vision_api_messages, models } from "~/config/ai"
-import { PROMPTS } from "~/constants/prompts"
 
 type OpenAIResponse = {
   isSuccess: boolean
@@ -57,7 +57,7 @@ export async function createChat({
       }
     }
 
-    let data;
+    let data
 
     if (streamResponse) {
       data = {

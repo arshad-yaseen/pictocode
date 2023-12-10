@@ -6,9 +6,8 @@ import { ChevronDown, ChevronUp } from "lucide-react"
 import "~/styles/code-theme.css"
 
 import { cn } from "~/utils/misc"
-import { Icons } from "~/components/icons"
+
 import { Button, buttonVariants } from "~/components/ui/button"
-import CopyButton from "./copy-button"
 import {
   Select,
   SelectContent,
@@ -16,6 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
+import { Icons } from "~/components/icons"
+
+import CopyButton from "./copy-button"
 
 const fileIcons = {
   ts: Icons.typescript,
@@ -182,7 +184,7 @@ function CodeBlock({
       )}
       <pre
         className={cn(
-          `group relative flex  w-full overflow-hidden rounded-sm hide-scrollbar ${
+          `hide-scrollbar group relative  flex w-full overflow-hidden rounded-sm ${
             snippetState ? "border" : null
           } ${codeWrap ? "whitespace-pre-wrap" : null} `,
           { "rounded-t-none": filenameState },
@@ -208,7 +210,7 @@ function CodeBlock({
           ref={codeRef as any}
           dangerouslySetInnerHTML={{ __html: wrappedHighlightedCode }}
           className={cn(
-            `min-w-full overflow-x-scroll py-6 font-mono text-sm !leading-[0.2] hide-scrollbar ${
+            `hide-scrollbar min-w-full overflow-x-scroll py-6 font-mono text-sm !leading-[0.2] ${
               !disableCodeFont ? "" : ""
             }`,
             { "py-4": getLines(highlightedCode).length <= 3 },

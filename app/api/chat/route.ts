@@ -1,13 +1,13 @@
 import { ERROR } from "~/constants/res-messages"
 import { ServerResponse } from "~/server/utils"
 import { OpenAIBody } from "~/types"
+import { isCorrectApiKey } from "~/utils/ai.utils"
 import { OpenAIStream, StreamingTextResponse } from "ai"
 import OpenAI from "openai"
 
-import { models } from "~/config/ai"
-import { isCorrectApiKey } from "~/utils/ai.utils"
-import { getWithDecryption } from "~/lib/session-store"
 import { env } from "~/env.mjs"
+import { models } from "~/config/ai"
+import { getWithDecryption } from "~/lib/session-store"
 
 export async function POST(req: Request): Promise<Response> {
   try {
@@ -31,7 +31,7 @@ export async function POST(req: Request): Promise<Response> {
     }
 
     const OPENAI_API_KEY = api_key || getWithDecryption(env.API_KEY_SESSION_KEY)
-    
+
     if (!OPENAI_API_KEY) {
       return ServerResponse.unauthorized(ERROR.MISSING_API_KEY)
     }

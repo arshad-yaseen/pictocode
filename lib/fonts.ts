@@ -1,4 +1,4 @@
-import { JetBrains_Mono, Newsreader } from "next/font/google"
+import { JetBrains_Mono } from "next/font/google"
 import { GeistSans } from "geist/font/sans"
 
 export const fontMono = JetBrains_Mono({
@@ -7,7 +7,3 @@ export const fontMono = JetBrains_Mono({
 })
 
 export const fontSans = GeistSans
-export const fontQuote = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-quote",
-})

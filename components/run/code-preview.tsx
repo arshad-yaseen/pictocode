@@ -10,7 +10,7 @@ const CodePreview = ({
   iframeBufferRef,
 }: CodePreviewProps) => {
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       <iframe
         ref={iframeVisibleRef}
         title="Visible Preview"
