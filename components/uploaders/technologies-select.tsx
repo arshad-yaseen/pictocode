@@ -9,13 +9,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
+import { cn } from "~/utils/misc"
 
 const TechnologiesSelect: React.FC<ITechnologiesSelectProps> = ({
   setTechnology,
+  defaultValue,
+  className,
 }) => {
   return (
-    <div className="grid w-[300px] grid-cols-2 gap-2 py-10">
-      <Select onValueChange={setTechnology} defaultValue={TECHNOLOGIES[0].id}>
+    <div className={cn("grid w-full grid-cols-2 gap-2", className)}>
+      <Select onValueChange={setTechnology} defaultValue={defaultValue || TECHNOLOGIES[0].id}>
         <SelectTrigger className="col-span-2 h-10">
           <SelectValue />
         </SelectTrigger>

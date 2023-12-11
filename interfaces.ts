@@ -14,4 +14,6 @@ export interface IFileDropzoneProps {
 
 export interface ITechnologiesSelectProps {
   setTechnology: React.Dispatch<React.SetStateAction<string>>
+  className?: string
+  defaultValue?: string
 }

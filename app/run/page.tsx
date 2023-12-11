@@ -44,6 +44,12 @@ const RunPage = () => {
     setLoadingText("")
   }
 
+  const rerun = () => {
+    codeRef.current = ""
+    updateIFrame("")
+    handleStart()
+  }
+
   return (
     <main className="flex h-screen w-full">
       <div className="flex h-full w-[300px] flex-col items-center border-r p-4 gap-4">
@@ -59,6 +65,8 @@ const RunPage = () => {
           onStart={handleStart}
           onStop={handleStop}
           code={codeRef.current}
+          rerun={rerun}
+          technology_id={technology_id}
         />
       </div>
       <div className="flex h-full flex-1 flex-col">

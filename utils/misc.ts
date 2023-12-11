@@ -92,3 +92,23 @@ export const fileToBase64 = (file: File): Promise<string> => {
     reader.onerror = (error) => reject(error)
   })
 }
+
+export const openInCodepen = async (code: string) => {
+  const form = document.createElement("form")
+  form.method = "POST"
+  form.action = "https://codepen.io/pen/define"
+  form.target = "_blank"
+  const input = document.createElement("input")
+  input.type = "hidden"
+  input.name = "data"
+  input.value = JSON.stringify({
+    title: "CodePen",
+    html: code,
+    js: "",
+    css: "",
+  })
+  form.appendChild(input)
+  document.body.appendChild(form)
+  form.submit()
+  document.body.removeChild(form)
+}

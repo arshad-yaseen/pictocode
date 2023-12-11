@@ -38,7 +38,7 @@ export const UploadersSection: React.FC = () => {
         technology={technology}
         push={push}
       />
-      <TechnologiesSelect setTechnology={setTechnology} />
+      <TechnologiesSelect setTechnology={setTechnology} className="py-10 w-[300px]" />
     </section>
   )
 }
