@@ -2,13 +2,17 @@
 
 import React, { useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
+import { cn } from "~/utils/misc"
 import { generateCode } from "~/utils/run.utils"
+import { Code2Icon, CodeIcon } from "lucide-react"
 
 import { useIframeThrottle } from "~/hooks/use-iframe-trottle"
+import { Button } from "~/components/ui/button"
 import { LoadingIcon } from "~/components/loading-icon"
 import CodePreview from "~/components/run/code-preview"
 import ControlButtons from "~/components/run/control-buttons"
 import ImagePreview from "~/components/run/image-preview"
+import CopyCodeSection from "~/components/run/copy-code-section"
 
 const RunPage = () => {
   const searchParams = useSearchParams()
@@ -42,22 +46,22 @@ const RunPage = () => {
 
   return (
     <main className="flex h-screen w-full">
-      <div className="flex h-full w-[300px] flex-col items-center border-r px-4">
+      <div className="flex h-full w-[300px] flex-col items-center border-r p-4 gap-4">
         <ImagePreview imageUrl={imageUrl} isRunning={isRunning} />
-        <ControlButtons
-          isRunning={isRunning}
-          onStart={handleStart}
-          onStop={handleStop}
-        />
         {isRunning && (
-          <div className="mt-4 flex h-10 w-full items-center justify-center rounded-lg font-medium shadow-tooltip">
+          <div className="flex h-10 w-full items-center justify-center rounded-lg font-medium shadow-tooltip">
             <LoadingIcon className="mr-2 h-4 w-4" loading={true} />
             {loadingText}
           </div>
         )}
+        <ControlButtons
+          isRunning={isRunning}
+          onStart={handleStart}
+          onStop={handleStop}
+          code={codeRef.current}
+        />
       </div>
       <div className="flex h-full flex-1 flex-col">
-        <div className="h-12 min-w-full border-b bg-white"></div>
         <CodePreview
           iframeVisibleRef={iframeVisibleRef}
           iframeBufferRef={iframeBufferRef}

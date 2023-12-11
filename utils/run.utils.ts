@@ -50,14 +50,17 @@ export const generateCode = async ({
     setLoadingText("Rendering...")
   }, 3000)
 
+  let code = ""
+
   while (!done) {
     const { value, done: doneReading } = (await reader?.read()) as any
     done = doneReading
     const chunkValue = decoder.decode(value)
-    codeRef.current += chunkValue
-    updateIFrame(codeRef.current)
+    code += chunkValue
+    updateIFrame(code)
   }
-
+  
+  codeRef.current += code
   // Clear loading state
   setLoadingText("")
   setIsRunning(false)

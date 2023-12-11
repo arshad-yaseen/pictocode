@@ -9,6 +9,7 @@ code .line {
   -o-tab-size: 4;
   tab-size: 4;
   padding: 0.5px 2.5rem 0.5px 1.5rem;
+  @apply text-gray-9;
 }
 
 code {

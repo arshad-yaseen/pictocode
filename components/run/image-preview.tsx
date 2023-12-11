@@ -10,7 +10,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ imageUrl, isRunning }) => {
   return (
     <div
       className={cn(
-        "relative mt-4 w-fit overflow-hidden rounded-[10px] p-1.5 shadow-tooltip",
+        "relative w-fit overflow-hidden rounded-[10px] p-1.5 shadow-tooltip",
         isRunning && "gradient-box"
       )}
     >
