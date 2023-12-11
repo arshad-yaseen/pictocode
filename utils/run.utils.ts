@@ -59,7 +59,7 @@ export const generateCode = async ({
     code += chunkValue
     updateIFrame(code)
   }
-  
+
   codeRef.current += code
   // Clear loading state
   setLoadingText("")

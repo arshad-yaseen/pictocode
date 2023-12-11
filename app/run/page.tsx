@@ -2,17 +2,13 @@
 
 import React, { useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import { cn } from "~/utils/misc"
 import { generateCode } from "~/utils/run.utils"
-import { Code2Icon, CodeIcon } from "lucide-react"
 
 import { useIframeThrottle } from "~/hooks/use-iframe-trottle"
-import { Button } from "~/components/ui/button"
 import { LoadingIcon } from "~/components/loading-icon"
 import CodePreview from "~/components/run/code-preview"
 import ControlButtons from "~/components/run/control-buttons"
 import ImagePreview from "~/components/run/image-preview"
-import CopyCodeSection from "~/components/run/copy-code-section"
 
 const RunPage = () => {
   const searchParams = useSearchParams()
@@ -52,7 +48,7 @@ const RunPage = () => {
 
   return (
     <main className="flex h-screen w-full">
-      <div className="flex h-full w-[300px] flex-col items-center border-r p-4 gap-4">
+      <div className="flex h-full w-[300px] flex-col items-center gap-4 border-r p-4">
         <ImagePreview imageUrl={imageUrl} isRunning={isRunning} />
         {isRunning && (
           <div className="flex h-10 w-full items-center justify-center rounded-lg font-medium shadow-tooltip">

@@ -260,6 +260,6 @@ iframe {
   -o-transition: opacity 0.5s ease-in-out;
 }
 
-iframe  {
- @apply !font-sans
+iframe {
+  @apply !font-sans;
 }

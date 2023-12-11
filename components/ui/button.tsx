@@ -8,7 +8,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gray-12 text-background shadow-border-small hover:bg-gray-12/90",
+        default:
+          "bg-gray-12 text-background shadow-border-small hover:bg-gray-12/90",
         error:
           "bg-error text-white shadow-small transition-colors hover:bg-error-hover",
         "outline-error":

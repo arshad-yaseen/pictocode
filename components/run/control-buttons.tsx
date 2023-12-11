@@ -22,7 +22,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
   onStop,
   code,
   rerun,
-  technology_id
+  technology_id,
 }) => {
   const [technology, setTechnology] = useState<string>("")
 
@@ -52,7 +52,10 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
 
   return (
     <>
-    <TechnologiesSelect setTechnology={setTechnology} defaultValue={technology_id} />
+      <TechnologiesSelect
+        setTechnology={setTechnology}
+        defaultValue={technology_id}
+      />
       <Button
         onClick={() => (isRunning ? onStop() : code ? rerun() : onStart())}
         variant={code ? "outline" : "default"}
@@ -75,13 +78,13 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
       >
         <CopyCodeSection code={code} />
         <Button
-        onClick={() => push("/")}
-        variant="secondary"
-        className={cn("h-10 w-full ")}
-      >
-        <UploadIcon className="mr-2 h-4 w-4" />
-        Re Upload
-      </Button>
+          onClick={() => push("/")}
+          variant="secondary"
+          className={cn("h-10 w-full ")}
+        >
+          <UploadIcon className="mr-2 h-4 w-4" />
+          Re Upload
+        </Button>
         <Button
           onClick={() => openInCodepen(code)}
           variant="secondary"

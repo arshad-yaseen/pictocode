@@ -182,11 +182,11 @@ function CodeBlock({
           </div>
         </div>
       )}
-      <div className="sticky left-0 top-0 h-2 z-50 w-[700px]">
-      {copyable && !filenameState && (
+      <div className="sticky left-0 top-0 z-50 h-2 w-[700px]">
+        {copyable && !filenameState && (
           <CopyButton
             value={snippetState}
-            className="z-50 border absolute top-2.5 right-3 transition-opacity group-hover:opacity-100"
+            className="absolute right-3 top-2.5 z-50 border transition-opacity group-hover:opacity-100"
           />
         )}
       </div>
@@ -204,7 +204,6 @@ function CodeBlock({
           preElementClass
         )}
       >
-
         {overflowBlur && (
           <div className="absolute -right-4 top-0 z-10 h-full w-12 bg-background blur"></div>
         )}
