@@ -30,7 +30,7 @@ export const useIframeThrottle = () => {
         iframe.contentDocument.close()
         swapIFrames()
       }
-    }, 50),
+    }, 100),
     []
   )
 

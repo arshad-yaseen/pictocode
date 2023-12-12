@@ -33,7 +33,7 @@ export const uploadImage = async (file: File): Promise<string> => {
   return secure_url
 }
 
-// Define a named function for handling the paste event
+// handling the paste event
 const pasteHandler = (
   event: ClipboardEvent,
   callback: DocumentImagePasteCallback
@@ -51,11 +51,9 @@ const pasteHandler = (
   }
 }
 
-// Function to add the event listener
 export const addDocumentImagePasteListener = (
   callback: DocumentImagePasteCallback
 ): (() => void) => {
-  // Bind the callback with the event handler
   const boundPasteHandler = (event: ClipboardEvent) =>
     pasteHandler(event, callback)
   document.addEventListener("paste", boundPasteHandler)

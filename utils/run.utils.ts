@@ -1,3 +1,4 @@
+import { TECHNOLOGY } from "~/types"
 import { buildPrompt, createChat } from "~/utils/ai.utils"
 
 export const generateCode = async ({
@@ -8,7 +9,7 @@ export const generateCode = async ({
   setLoadingText,
   codeRef,
 }: {
-  technology_id: string
+  technology_id: TECHNOLOGY
   imageUrl: string
   updateIFrame: (code: string) => void
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>

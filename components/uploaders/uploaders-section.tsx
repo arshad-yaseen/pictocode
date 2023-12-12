@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
-import { TECHNOLOGIES } from "~/constants/prompts"
+import { DETAULT_TECHNOLOGY, TECHNOLOGIES } from "~/constants/prompts"
 import { getImageUrl } from "~/utils/uploaders.utils"
 
 import FileDropzone from "~/components/uploaders/file-dropzone"
@@ -11,7 +11,7 @@ export const UploadersSection: React.FC = () => {
   const [submitting, setSubmitting] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [url, setUrl] = useState("")
-  const [technology, setTechnology] = useState(TECHNOLOGIES[0].id)
+  const [technology, setTechnology] = useState(TECHNOLOGIES[DETAULT_TECHNOLOGY])
   const { push } = useRouter()
 
   const handleUrlSubmit = async () => {

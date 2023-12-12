@@ -1,6 +1,6 @@
-import { PROMPTS } from "~/constants/prompts"
+import { PROMPTS, TECHNOLOGIES } from "~/constants/prompts"
 import { ERROR, SUCCESS } from "~/constants/res-messages"
-import { OpenAIBody } from "~/types"
+import { OpenAIBody, TECHNOLOGY } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
 
 import { example_vision_api_messages, models } from "~/config/ai"
@@ -147,6 +147,6 @@ export const validateApiKey = async (
   }
 }
 
-export const buildPrompt = (technologyId: string) => {
+export const buildPrompt = (technologyId: TECHNOLOGY) => {
   return PROMPTS[technologyId]
 }

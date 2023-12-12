@@ -1,29 +1,4 @@
-export const TECHNOLOGIES = [
-  {
-    id: "html-tailwind",
-    name: "HTML & Tailwind CSS",
-  }, // Default
-  {
-    id: "react-tailwind",
-    name: "React & Tailwind CSS",
-  },
-  {
-    id: "html-css",
-    name: "HTML & CSS",
-  },
-  {
-    id: "react-css",
-    name: "React & CSS",
-  },
-  {
-    id: "html-bootstrap",
-    name: "HTML & Bootstrap",
-  },
-  {
-    id: "react-bootstrap",
-    name: "React & Bootstrap",
-  },
-]
+import { TECHNOLOGY } from "~/types"
 
 const TAILWIND_HTML_PROMPT = `You are an expert Tailwind developer.
 You take screenshots of a reference web page from the user, and then write the code for  single page apps 
@@ -90,7 +65,22 @@ Return only the full code in <html></html> tags.
 Do not include markdown "\`\`\`" or "\`\`\`html" at the start or end.
 `
 
-export const PROMPTS: Record<string, string> = {
+export const PROMPTS: Record<TECHNOLOGY, string> = {
   "html-tailwind": TAILWIND_HTML_PROMPT,
   "react-tailwind": REACT_TAILWIND_PROMPT,
+  "html-css": "",
+  "react-css": "",
+  "html-bootstrap": "",
+  "react-bootstrap": "",
 }
+
+export const TECHNOLOGIES: Record<TECHNOLOGY, string> = {
+  "html-tailwind": "HTML & Tailwind CSS",
+  "react-tailwind": "React & Tailwind CSS",
+  "html-css": "HTML & CSS",
+  "react-css": "React & CSS",
+  "html-bootstrap": "HTML & Bootstrap",
+  "react-bootstrap": "React & Bootstrap",
+}
+
+export const DETAULT_TECHNOLOGY: TECHNOLOGY = "html-tailwind"

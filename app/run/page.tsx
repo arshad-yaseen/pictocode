@@ -9,6 +9,7 @@ import { LoadingIcon } from "~/components/loading-icon"
 import CodePreview from "~/components/run/code-preview"
 import ControlButtons from "~/components/run/control-buttons"
 import ImagePreview from "~/components/run/image-preview"
+import { TECHNOLOGY } from "~/types"
 
 const RunPage = () => {
   const searchParams = useSearchParams()
@@ -27,7 +28,7 @@ const RunPage = () => {
       setIsRunning,
       setLoadingText,
       updateIFrame,
-      technology_id: technology_id,
+      technology_id: technology_id as TECHNOLOGY,
       codeRef,
     }).finally(() => {
       setLoadingText("")

@@ -1,5 +1,5 @@
 import React from "react"
-import { TECHNOLOGIES } from "~/constants/prompts"
+import { DETAULT_TECHNOLOGY, TECHNOLOGIES } from "~/constants/prompts"
 import { ITechnologiesSelectProps } from "~/interfaces"
 import { cn } from "~/utils/misc"
 
@@ -20,15 +20,15 @@ const TechnologiesSelect: React.FC<ITechnologiesSelectProps> = ({
     <div className={cn("grid w-full grid-cols-2 gap-2", className)}>
       <Select
         onValueChange={setTechnology}
-        defaultValue={defaultValue || TECHNOLOGIES[0].id}
+        defaultValue={defaultValue || TECHNOLOGIES[DETAULT_TECHNOLOGY]}
       >
         <SelectTrigger className="col-span-2 h-10">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {TECHNOLOGIES.map((technology, index) => (
-            <SelectItem key={index} value={technology.id}>
-              {technology.name}
+          {Object.entries(TECHNOLOGIES).map(([key, value]) => (
+            <SelectItem key={key} value={key}>
+              {value}
             </SelectItem>
           ))}
         </SelectContent>
