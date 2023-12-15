@@ -1,6 +1,7 @@
 import React from "react"
-import { DETAULT_TECHNOLOGY, TECHNOLOGIES } from "~/constants/prompts"
+import { DEFAULT_TECHNOLOGY, TECHNOLOGIES } from "~/constants/prompts"
 import { ITechnologiesSelectProps } from "~/interfaces"
+import { TECHNOLOGY } from "~/types"
 import { cn } from "~/utils/misc"
 
 import {
@@ -19,8 +20,8 @@ const TechnologiesSelect: React.FC<ITechnologiesSelectProps> = ({
   return (
     <div className={cn("grid w-full grid-cols-2 gap-2", className)}>
       <Select
-        onValueChange={setTechnology}
-        defaultValue={defaultValue || TECHNOLOGIES[DETAULT_TECHNOLOGY]}
+        onValueChange={(value) => setTechnology(value as TECHNOLOGY)}
+        defaultValue={defaultValue || DEFAULT_TECHNOLOGY}
       >
         <SelectTrigger className="col-span-2 h-10">
           <SelectValue />

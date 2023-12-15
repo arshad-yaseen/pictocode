@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { TECHNOLOGY } from "~/types"
 import { cn, openInCodepen } from "~/utils/misc"
 import { CodepenIcon, PlayIcon, SquareIcon, UploadIcon } from "lucide-react"
 
@@ -24,7 +25,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
   rerun,
   technology_id,
 }) => {
-  const [technology, setTechnology] = useState<string>("")
+  const [technology, setTechnology] = useState<TECHNOLOGY | null>(null)
 
   const pathname = usePathname()
   const searchParams = useSearchParams()!

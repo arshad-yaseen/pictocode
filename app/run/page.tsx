@@ -2,20 +2,23 @@
 
 import React, { useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
+import { TECHNOLOGY } from "~/types"
 import { generateCode } from "~/utils/run.utils"
 
 import { useIframeThrottle } from "~/hooks/use-iframe-trottle"
+import BringApiKey from "~/components/bring-api-key"
 import { LoadingIcon } from "~/components/loading-icon"
 import CodePreview from "~/components/run/code-preview"
 import ControlButtons from "~/components/run/control-buttons"
 import ImagePreview from "~/components/run/image-preview"
-import { TECHNOLOGY } from "~/types"
 
 const RunPage = () => {
   const searchParams = useSearchParams()
   const { imageUrl, technology_id } = Object.fromEntries(searchParams)
   const [loadingText, setLoadingText] = useState<string>("")
   const [isRunning, setIsRunning] = useState<boolean>(false)
+  const [isBringApiKeyDialogOpen, setIsBringApiKeyDialogOpen] =
+    useState<boolean>(false)
   const codeRef = useRef<string>("")
   const { iframeVisibleRef, iframeBufferRef, updateIFrame } =
     useIframeThrottle()
@@ -27,6 +30,7 @@ const RunPage = () => {
       imageUrl: imageUrl,
       setIsRunning,
       setLoadingText,
+      setIsBringApiKeyDialogOpen,
       updateIFrame,
       technology_id: technology_id as TECHNOLOGY,
       codeRef,
@@ -72,6 +76,11 @@ const RunPage = () => {
           iframeBufferRef={iframeBufferRef}
         />
       </div>
+      <BringApiKey
+        noTrigger
+        isOpen={isBringApiKeyDialogOpen}
+        setIsOpen={setIsBringApiKeyDialogOpen}
+      />
     </main>
   )
 }

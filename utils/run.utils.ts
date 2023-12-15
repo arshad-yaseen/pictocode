@@ -7,6 +7,7 @@ export const generateCode = async ({
   updateIFrame,
   setIsRunning,
   setLoadingText,
+  setIsBringApiKeyDialogOpen,
   codeRef,
 }: {
   technology_id: TECHNOLOGY
@@ -14,6 +15,7 @@ export const generateCode = async ({
   updateIFrame: (code: string) => void
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
   setLoadingText: React.Dispatch<React.SetStateAction<string>>
+  setIsBringApiKeyDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
   codeRef: React.MutableRefObject<string>
 }): Promise<void> => {
   const response = await createChat({
@@ -38,9 +40,17 @@ export const generateCode = async ({
       ],
       max_tokens: 4096,
       temperature: 0,
+      seed: 0.5,
     },
     type: "vision",
   })
+
+  if (response.error?.statusCode === 403) {
+    setIsRunning(false)
+    setLoadingText("")
+    setIsBringApiKeyDialogOpen(true)
+    return
+  }
 
   const data = response.message?.content as ReadableStream<Uint8Array>
   const reader = data?.getReader()

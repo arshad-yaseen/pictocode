@@ -8,6 +8,5 @@ export type TECHNOLOGY =
   | "html-tailwind"
   | "react-tailwind"
   | "html-css"
-  | "react-css"
   | "html-bootstrap"
   | "react-bootstrap"

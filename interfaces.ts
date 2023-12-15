@@ -1,3 +1,5 @@
+import { TECHNOLOGY } from "~/types"
+
 export interface IUrlFormProps {
   url: string
   setUrl: React.Dispatch<React.SetStateAction<string>>
@@ -8,12 +10,12 @@ export interface IUrlFormProps {
 export interface IFileDropzoneProps {
   setUploading: React.Dispatch<React.SetStateAction<boolean>>
   uploading: boolean
-  technology: string
+  technology: TECHNOLOGY | null
   push: (url: string) => void
 }
 
 export interface ITechnologiesSelectProps {
-  setTechnology: React.Dispatch<React.SetStateAction<string>>
+  setTechnology: React.Dispatch<React.SetStateAction<TECHNOLOGY | null>>
   className?: string
   defaultValue?: string
 }

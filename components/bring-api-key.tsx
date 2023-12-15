@@ -24,7 +24,13 @@ import {
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 
-const BringApiKey = () => {
+interface IBringApiKeyProps {
+  noTrigger?: boolean
+  isOpen?: boolean
+  setIsOpen?: (isOpen: boolean) => void
+}
+
+const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
   const [apiKey, setApiKey] = useState<string>("")
   const [accepted, setAccepted] = useState<boolean | "indeterminate">(false)
   const [isSecureOpen, setIsSecureOpen] = useState<boolean>(false)
@@ -35,6 +41,10 @@ const BringApiKey = () => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const [deleting, setDeleting] = useState<boolean>(false)
   const [isApiKeyFromSession, setIsApiKeyFromSession] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (isOpen) setIsDialogOpen(true)
+  }, [isOpen])
 
   const saveApiKey = async (apiKey: string) => {
     if (saving) return
@@ -117,12 +127,17 @@ const BringApiKey = () => {
   }
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogTrigger asChild>
-        <Button className="w-full rounded-lg md:mx-3 md:w-auto">
-          {isApiKeyFromSession ? "Change" : "Bring"} OpenAI API Key
-        </Button>
-      </DialogTrigger>
+    <Dialog
+      open={isDialogOpen}
+      onOpenChange={setIsOpen ? setIsOpen : setIsDialogOpen}
+    >
+      {!noTrigger && (
+        <DialogTrigger asChild>
+          <Button className="w-full rounded-lg md:mx-3 md:w-auto">
+            {isApiKeyFromSession ? "Change" : "Bring"} OpenAI API Key
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className=" md:!rounded-xl md:p-8">
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-semibold">
