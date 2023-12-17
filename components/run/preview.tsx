@@ -1,6 +1,9 @@
+import { useRef } from "react"
+import { EVENT_PUB_PREVIEW_SIZE } from "~/constants/run"
 import { cn } from "~/utils/misc"
 import { Resizable } from "re-resizable"
 
+import { useSub } from "~/hooks/use-pub-sub"
 import { LoadingIcon } from "~/components/loading-icon"
 
 interface PreviewProps {
@@ -18,9 +21,24 @@ const Preview = ({
   isRunning,
   loadingText,
 }: PreviewProps) => {
+  const isResizableActive = !!code && !isRunning
+  const previewRef = useRef<Resizable>(null)
+
+  const handlePreviewSizeChange = (size: number) => {
+    if (previewRef.current) {
+      previewRef.current.updateSize({
+        width: size,
+        height: "100%",
+      })
+    }
+  }
+
+  // Subscribe to the preview size change event
+  useSub(EVENT_PUB_PREVIEW_SIZE, handlePreviewSizeChange)
+
   if (isRunning && !code)
     return (
-      <div className="flex h-full w-full items-center justify-center border-x-2 border-black ">
+      <div className="flex h-full w-full items-center justify-center">
         <LoadingIcon className="mr-2 h-4 w-4" loading={true} />
         {loadingText}
       </div>
@@ -36,12 +54,13 @@ const Preview = ({
         maxWidth={"100%"}
         minWidth={"375px"}
         enable={{
-          left: !!code,
-          right: !!code,
+          right: isResizableActive,
+          left: isResizableActive,
         }}
-        className={cn(
-          "relative mx-auto border-x-2 border-foreground  transition-colors duration-300"
-        )}
+        className={cn("relative mx-auto  transition-colors duration-300", {
+          border: isResizableActive,
+        })}
+        ref={previewRef}
       >
         <iframe
           ref={iframeVisibleRef}

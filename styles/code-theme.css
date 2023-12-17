@@ -83,5 +83,5 @@ code .highlight-line {
 .hljs-comment,
 .hljs-quote,
 .hljs-meta {
-  @apply text-gray-5;
+  @apply text-gray-8;
 }

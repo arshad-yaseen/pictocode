@@ -10,7 +10,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ imageUrl, isRunning }) => {
   return (
     <div
       className={cn(
-        "relative w-fit overflow-hidden rounded-[10px] p-1.5 shadow-tooltip",
+        "relative w-fit overflow-hidden rounded-md p-1.5 shadow-tooltip",
         isRunning && "gradient-box"
       )}
     >
@@ -18,7 +18,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ imageUrl, isRunning }) => {
         src={imageUrl}
         alt="run_image"
         className={cn(
-          "relative z-30 w-full rounded-[10px]",
+          "relative z-30 w-full rounded-md",
           isRunning && "animate-pulse"
         )}
       />

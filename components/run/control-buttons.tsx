@@ -5,8 +5,10 @@ import { cn, openInCodepen } from "~/utils/misc"
 import { CodepenIcon, PlayIcon, SquareIcon, UploadIcon } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
+import { Separator } from "~/components/ui/separator"
 import CodeMirror from "~/components/run/code-mirror"
 import CopyCodeSection from "~/components/run/copy-code-section"
+import PreviewSizeAdjust from "~/components/run/preview-size-adjust"
 import TechnologiesSelect from "~/components/uploaders/technologies-select"
 
 interface ControlButtonsProps {
@@ -27,6 +29,9 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
   technology_id,
 }) => {
   const [technology, setTechnology] = useState<TECHNOLOGY | null>(null)
+
+  const isRenderFinished = code && !isRunning
+  const isRendering = !!code && isRunning
 
   const pathname = usePathname()
   const searchParams = useSearchParams()!
@@ -60,7 +65,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
       />
       <Button
         onClick={() => (isRunning ? onStop() : code ? rerun() : onStart())}
-        variant={code ? "outline" : "default"}
+        variant={isRenderFinished ? "outline" : "default"}
         className={cn("h-10 w-full")}
       >
         {isRunning ? (
@@ -70,15 +75,24 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
         )}
         {isRunning ? "Stop" : code ? "Re-Run" : "Run"}
       </Button>
-      {!!code && isRunning && <CodeMirror code={code} />}
+      {isRendering && <CodeMirror code={code} />}
       <div
         className={cn(
           "invisible flex w-full translate-y-4 flex-col gap-4 opacity-0 transition-all duration-500",
           {
-            "visible translate-y-0 opacity-100": !isRunning && code,
+            "visible translate-y-0 opacity-100": isRenderFinished,
           }
         )}
       >
+        <Button
+          onClick={() => push("/")}
+          variant="outline"
+          className={cn("h-10 w-full ")}
+        >
+          <UploadIcon className="mr-2 h-4 w-4" />
+          Re Upload
+        </Button>
+        <Separator className="my-1 w-full" />
         <CopyCodeSection code={code} />
         <Button
           onClick={() => openInCodepen(code)}
@@ -88,14 +102,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
           <CodepenIcon className="mr-2 h-4 w-4" />
           Open in CodePen
         </Button>
-        <Button
-          onClick={() => push("/")}
-          variant="secondary"
-          className={cn("h-10 w-full ")}
-        >
-          <UploadIcon className="mr-2 h-4 w-4" />
-          Re Upload
-        </Button>
+        <PreviewSizeAdjust />
       </div>
     </>
   )
