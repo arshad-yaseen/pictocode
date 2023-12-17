@@ -1,5 +1,6 @@
 import React from "react"
 import { cn } from "~/utils/misc"
+import { Code2Icon } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "~/components/ui/dialog"
@@ -21,7 +22,10 @@ const CodeDialog = ({ code }: CopyCodeSectionProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="h-10">Code</Button>
+        <Button className="h-10">
+          <Code2Icon className="mr-2 h-4 w-4" />
+          Code
+        </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] min-w-[700px] overflow-scroll p-0">
         <CodeBlock

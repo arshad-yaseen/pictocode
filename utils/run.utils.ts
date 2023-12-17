@@ -8,7 +8,7 @@ export const generateCode = async ({
   setIsRunning,
   setLoadingText,
   setIsBringApiKeyDialogOpen,
-  codeRef,
+  setCode,
 }: {
   technology_id: TECHNOLOGY
   imageUrl: string
@@ -16,7 +16,7 @@ export const generateCode = async ({
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
   setLoadingText: React.Dispatch<React.SetStateAction<string>>
   setIsBringApiKeyDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
-  codeRef: React.MutableRefObject<string>
+  setCode: React.Dispatch<React.SetStateAction<string>>
 }): Promise<void> => {
   const response = await createChat({
     body: {
@@ -68,10 +68,10 @@ export const generateCode = async ({
     done = doneReading
     const chunkValue = decoder.decode(value)
     code += chunkValue
+    setCode(code)
     updateIFrame(code)
   }
 
-  codeRef.current += code
   // Clear loading state
   setLoadingText("")
   setIsRunning(false)

@@ -9,7 +9,7 @@ code .line {
   -o-tab-size: 4;
   tab-size: 4;
   padding: 0.5px 2.5rem 0.5px 1.5rem;
-  @apply text-gray-9;
+  @apply text-gray-10;
 }
 
 code {
@@ -44,13 +44,13 @@ code .highlight-line {
 
 :root {
   /* Light Mode Colors - Unchanged from Previous Version */
-  --cortex-earthy-primary: #276b4e; /* Deep forest green */
-  --cortex-earthy-secondary: #c85c1a; /* Rustic orange */
-  --cortex-earthy-tertiary: #79bde6; /* Darker sky blue */
+  --primary-color: #856ddb; /* A soft purple */
+  --secondary-color: #15708e; /* A deep teal blue */
+  --tertiary-color: #56aba0; /* A muted seafoam green */
 
-  --cortex-earthy-primary-dark: #2e8b57; /* Sea green */
-  --cortex-earthy-secondary-dark: #d2691e; /* Chocolate */
-  --cortex-earthy-tertiary-dark: #87ceeb; /* Sky blue */
+  --primary-color-dark: #5a489b; /* A darker shade of the soft purple */
+  --secondary-color-dark: #0f5066; /* A darker shade of the deep teal blue */
+  --tertiary-color-dark: #3c7c7a; /* A darker shade of the muted seafoam green */
 }
 
 /* Primary Highlight: Keywords, Functions, Literals, Names, Titles, Built-ins, Types */
@@ -61,20 +61,27 @@ code .highlight-line {
 .hljs-title,
 .hljs-built_in,
 .hljs-type {
-  @apply text-[var(--cortex-earthy-primary)] dark:text-[var(--cortex-earthy-primary-dark)];
+  @apply text-[var(--primary-color)] dark:text-[var(--primary-color-dark)];
 }
 
 /* Secondary Highlight: Strings and Variables */
 .hljs-string,
-.hljs-attr,
 .hljs-variable,
 .hljs-template-variable {
-  @apply text-[var(--cortex-earthy-secondary)] dark:text-[var(--cortex-earthy-secondary-dark)];
+  @apply text-[var(--secondary-color)] dark:text-[var(--secondary-color-dark)];
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attr,
+.hljs-regexp,
+.hljs-link {
+  @apply text-[var(--tertiary-color)] dark:text-[var(--tertiary-color-dark)];
 }
 
 /* Tertiary Highlight: Comments and Meta */
 .hljs-comment,
 .hljs-quote,
 .hljs-meta {
-  @apply text-[var(--cortex-earthy-tertiary)] dark:text-[var(--cortex-earthy-tertiary-dark)];
+  @apply text-gray-5;
 }

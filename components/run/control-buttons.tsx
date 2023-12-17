@@ -5,6 +5,7 @@ import { cn, openInCodepen } from "~/utils/misc"
 import { CodepenIcon, PlayIcon, SquareIcon, UploadIcon } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
+import CodeMirror from "~/components/run/code-mirror"
 import CopyCodeSection from "~/components/run/copy-code-section"
 import TechnologiesSelect from "~/components/uploaders/technologies-select"
 
@@ -69,23 +70,16 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
         )}
         {isRunning ? "Stop" : code ? "Re-Run" : "Run"}
       </Button>
+      {!!code && isRunning && <CodeMirror code={code} />}
       <div
         className={cn(
-          "flex w-full flex-col gap-4 transition-all duration-500",
+          "invisible flex w-full translate-y-4 flex-col gap-4 opacity-0 transition-all duration-500",
           {
-            "invisible translate-y-4 opacity-0": !code,
+            "visible translate-y-0 opacity-100": !isRunning && code,
           }
         )}
       >
         <CopyCodeSection code={code} />
-        <Button
-          onClick={() => push("/")}
-          variant="secondary"
-          className={cn("h-10 w-full ")}
-        >
-          <UploadIcon className="mr-2 h-4 w-4" />
-          Re Upload
-        </Button>
         <Button
           onClick={() => openInCodepen(code)}
           variant="secondary"
@@ -93,6 +87,14 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
         >
           <CodepenIcon className="mr-2 h-4 w-4" />
           Open in CodePen
+        </Button>
+        <Button
+          onClick={() => push("/")}
+          variant="secondary"
+          className={cn("h-10 w-full ")}
+        >
+          <UploadIcon className="mr-2 h-4 w-4" />
+          Re Upload
         </Button>
       </div>
     </>
