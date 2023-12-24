@@ -1,4 +1,4 @@
-![hero](/public/og.png)
+![hero](https://pictocode.arshadyaseen.com/og.png)
 
 ## Contributing
 
