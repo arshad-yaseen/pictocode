@@ -1,11 +1,11 @@
-import React from "react"
+import React, { HTMLAttributeAnchorTarget } from "react"
 import NextLink from "next/link"
 import { cn } from "~/utils/misc"
 
 export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode
   href: string
-  target?: "_blank" | "_self" | "_parent" | "_top"
+  target?: HTMLAttributeAnchorTarget
   className?: string
 }
 

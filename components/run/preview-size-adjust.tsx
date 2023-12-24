@@ -15,9 +15,10 @@ const PX_SIZES: Record<PreviewSize, number> = {
 const DEFAULT_PREVIEW_SIZE = PX_SIZES.desktop
 
 const PreviewSizeAdjust = () => {
+  const pub = usePub()
+
   const handleValueChange = (value: string) => {
     const size = Number(value)
-    const pub = usePub()
     // Publish the new preview size
     pub(EVENT_PUB_PREVIEW_SIZE, size)
   }
@@ -30,7 +31,11 @@ const PreviewSizeAdjust = () => {
     >
       <TabsList className="w-full">
         {Object.entries(PX_SIZES).map(([key, value]) => (
-          <TabsTrigger value={String(value)} className="w-1/3 capitalize">
+          <TabsTrigger
+            key={key}
+            value={String(value)}
+            className="w-1/3 capitalize"
+          >
             {key}
           </TabsTrigger>
         ))}
