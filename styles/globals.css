@@ -133,14 +133,6 @@
   }
 }
 
-.monaco-editor span {
-  @apply font-mono !important;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
 @layer base {
   * {
     @apply border-border;
@@ -151,4 +143,28 @@
       "rlig" 1,
       "calt" 1;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+}
+
+html {
+  touch-action: manipulation;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.monaco-editor span {
+  @apply font-mono !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }

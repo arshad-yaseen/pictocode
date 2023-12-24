@@ -18,12 +18,12 @@ const UrlForm: React.FC<IUrlFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex space-x-2">
+    <form onSubmit={handleSubmit} className="flex gap-2 md:flex-row flex-col md:w-auto w-full">
       <Input
         type="text"
         name="url"
         placeholder="Enter image URL or Website URL"
-        className="flex-1 border-2 transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px]"
+        className="flex-1 border-2 transition-[border] duration-300 focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-transparent md:w-[500px] w-full"
         onChange={(e) => setUrl(e.target.value)}
         value={url}
         autoComplete="off"
