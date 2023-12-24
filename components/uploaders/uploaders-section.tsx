@@ -43,7 +43,7 @@ export const UploadersSection: React.FC = () => {
       />
       <TechnologiesSelect
         setTechnology={setTechnology}
-        className="md:w-[300px] w-full py-10"
+        className="w-full py-10 md:w-[300px]"
       />
     </section>
   )
