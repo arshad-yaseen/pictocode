@@ -20,8 +20,6 @@ const buttonVariants = cva(
           "bg-secondary text-primary shadow-border-small hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        fancy:
-          "fancy-button inline-flex  items-center px-8 text-sm transition duration-200 ease-in-out",
       },
       size: {
         default: "h-9 px-4 py-2",

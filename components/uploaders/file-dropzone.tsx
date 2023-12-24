@@ -54,7 +54,7 @@ const FileDropzone: React.FC<IFileDropzoneProps> = ({
       <input {...getInputProps()} />
       <Card
         className={cn(
-          "flex h-[200px] w-full cursor-pointer flex-col  items-center justify-center gap-y-4 text-gray-11 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",
+          "flex h-[150px] w-full cursor-pointer flex-col  items-center justify-center gap-y-4 text-gray-11 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",
           isDragActive ? "shadow-tooltip" : "shadow-border-small"
         )}
       >

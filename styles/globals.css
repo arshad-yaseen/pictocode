@@ -8,8 +8,8 @@
     --foreground: 222.2 84% 4.9%;
     --card: var(--background);
     --popover: var(--gray4);
-    --card-foreground: 222.2 84% 4.9%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card-foreground: var(--foreground);
+    --popover-foreground: var(--foreground);
     --accent: #fafafa;
     --accent-foreground: #111111;
     --primary: #111111;
@@ -85,25 +85,17 @@
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --accent: #fafafa;
-    --accent-foreground: #111111;
-    --primary: #111111;
-    --primary-foreground: #ffffff;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --accent: #111010;
+    --accent-foreground: #fafafa;
+    --primary: #ffffff;
+    --primary-foreground: #111111;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9;
+
+    --shadow-border: 0 0 0 1px hsla(0, 0%, 100%, 0.145);
 
     --gray1: 0 0% 8.5%;
     --gray2: 0 0% 11%;

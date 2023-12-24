@@ -61,8 +61,8 @@ const RunPage = () => {
   }
 
   return (
-    <main className="flex h-screen w-full">
-      <div className="flex h-full w-[300px] flex-col items-center gap-4 border-r p-4">
+    <main className="flex h-[200vh] w-full   flex-col md:h-screen md:flex-row">
+      <div className="flex w-full flex-col items-center gap-4 border-r p-4 md:h-full md:w-[300px]">
         <ImagePreview imageUrl={imageUrl} isRunning={isRunning} />
         <ControlButtons
           isRunning={isRunning}

@@ -26,7 +26,7 @@ const PreviewSizeAdjust = () => {
     <Tabs
       onValueChange={handleValueChange}
       defaultValue={String(DEFAULT_PREVIEW_SIZE)}
-      className="w-full"
+      className="hidden w-full md:block"
     >
       <TabsList className="w-full">
         {Object.entries(PX_SIZES).map(([key, value]) => (
