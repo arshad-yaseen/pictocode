@@ -20,7 +20,7 @@
     "format:check": "prettier --check .",
     "prepare": "husky install",
     "preview": "next build && next start",
-    "postinstall": "cd node_modules/puppeteer && node install.mjs"
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
     "@babel/standalone": "^7.23.4",
