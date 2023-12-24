@@ -1,17 +1,19 @@
 import { useRef } from "react"
 import { EVENT_PUB_PREVIEW_SIZE } from "~/constants/run"
+import { TECHNOLOGY } from "~/types"
 import { cn } from "~/utils/misc"
 import { Resizable } from "re-resizable"
 
 import { useSub } from "~/hooks/use-pub-sub"
-import { LoadingIcon } from "~/components/loading-icon"
+import { withPreviewLoading } from "~/components/HOCs/with-preview-loading"
 
-interface PreviewProps {
+export interface PreviewProps {
   iframeVisibleRef: React.RefObject<HTMLIFrameElement>
   iframeBufferRef: React.RefObject<HTMLIFrameElement>
   code: string | null
   isRunning: boolean
   loadingText?: string
+  technology_id: TECHNOLOGY
 }
 
 const Preview = ({
@@ -19,7 +21,6 @@ const Preview = ({
   iframeBufferRef,
   code,
   isRunning,
-  loadingText,
 }: PreviewProps) => {
   const isResizableActive = !!code && !isRunning
   const previewRef = useRef<Resizable>(null)
@@ -35,14 +36,6 @@ const Preview = ({
 
   // Subscribe to the preview size change event
   useSub(EVENT_PUB_PREVIEW_SIZE, handlePreviewSizeChange)
-
-  if (isRunning && !code)
-    return (
-      <div className="flex h-full w-full items-center justify-center">
-        <LoadingIcon className="mr-2 h-4 w-4" loading={true} />
-        {loadingText}
-      </div>
-    )
 
   return (
     <div className="relative h-full w-full">
@@ -65,18 +58,18 @@ const Preview = ({
         <iframe
           ref={iframeVisibleRef}
           title="Visible Preview"
-          className="absolute left-0 top-0 h-full w-full transition-opacity duration-500"
-          style={{ opacity: "1" }}
+          className="absolute left-0 top-0 h-full w-full transition-all duration-500"
+          style={{ opacity: "1", visibility: "visible" }}
         ></iframe>
         <iframe
           ref={iframeBufferRef}
           title="Buffer Preview"
-          className="absolute left-0 top-0 h-full w-full transition-opacity duration-500"
-          style={{ opacity: "0" }}
+          className="absolute left-0  top-0 h-full w-full transition-all duration-500"
+          style={{ opacity: "0", visibility: "hidden" }}
         ></iframe>
       </Resizable>
     </div>
   )
 }
 
-export default Preview
+export default withPreviewLoading(Preview)

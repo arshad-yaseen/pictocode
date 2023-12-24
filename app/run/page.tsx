@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { TECHNOLOGY } from "~/types"
 import { generateCode } from "~/utils/run.utils"
@@ -22,6 +22,9 @@ const RunPage = () => {
   const { iframeVisibleRef, iframeBufferRef, updateIFrame } =
     useIframeThrottle()
 
+  // This is used to stop the rendering process.
+  let stopRendering = useRef<boolean>(false)
+
   const handleStart = () => {
     setIsRunning(true)
     setLoadingText("Starting Rendering...")
@@ -33,6 +36,7 @@ const RunPage = () => {
       setCode,
       setIsRunning,
       setLoadingText,
+      stop: stopRendering,
     }).finally(() => {
       setLoadingText("")
       setIsRunning(false)
@@ -40,36 +44,21 @@ const RunPage = () => {
   }
 
   const handleStop = () => {
+    stopRendering.current = true
     setIsRunning(false)
-    setLoadingText("")
+    reset()
   }
 
   const rerun = () => {
-    setCode("")
-    updateIFrame("")
+    reset()
     handleStart()
   }
 
-  // useEffect(() => {
-  //   updateIFrame(`
-  //     <html>
-  //       <body>
-  //         <div class="flex h-screen w-full items-center justify-center">
-  //           <h1 class="text-2xl font-medium text-gray-500">Loading...</h1>
-  //         </div>
-  //       </body>
-  //     </html>
-  //   `)
-  //   codeRef.current = `
-  //     <html>
-  //       <body>
-  //         <div class="flex h-screen w-full items-center justify-center">
-  //           <h1 class="text-2xl font-medium text-gray-500">Loading...</h1>
-  //         </div>
-  //       </body>
-  //     </html>
-  //   `
-  // },[codeRef.current, updateIFrame])
+  const reset = () => {
+    setCode("")
+    updateIFrame("")
+    setLoadingText("")
+  }
 
   return (
     <main className="flex h-screen w-full">
@@ -91,6 +80,7 @@ const RunPage = () => {
           code={code}
           isRunning={isRunning}
           loadingText={loadingText}
+          technology_id={technology_id as TECHNOLOGY}
         />
       </div>
       <BringApiKey

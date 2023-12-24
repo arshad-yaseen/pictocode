@@ -9,7 +9,7 @@ code .line {
   -o-tab-size: 4;
   tab-size: 4;
   padding: 0.5px 2.5rem 0.5px 1.5rem;
-  @apply text-gray-10;
+  @apply text-[#334155];
 }
 
 code {
@@ -28,7 +28,7 @@ code .line::before {
   text-align: right;
   flex-shrink: 0;
   margin-right: 1.2rem;
-  color: var(--gray9);
+  @apply text-gray-10;
 }
 
 code .hide-line::before {
@@ -43,31 +43,32 @@ code .highlight-line {
 }
 
 :root {
-  /* Light Mode Colors - Unchanged from Previous Version */
-  --primary-color: #856ddb; /* A soft purple */
-  --secondary-color: #15708e; /* A deep teal blue */
-  --tertiary-color: #56aba0; /* A muted seafoam green */
+  /* Light Mode Colors */
+  --primary-color: #1d4ed8;
+  --secondary-color: #0284c7;
+  --tertiary-color: #0d9488;
 
-  --primary-color-dark: #5a489b; /* A darker shade of the soft purple */
-  --secondary-color-dark: #0f5066; /* A darker shade of the deep teal blue */
-  --tertiary-color-dark: #3c7c7a; /* A darker shade of the muted seafoam green */
+  /* Dark Mode Colors */
+  --primary-color-dark: #5a489b;
+  --secondary-color-dark: #0f5066;
+  --tertiary-color-dark: #3c7c7a;
 }
 
 /* Primary Highlight: Keywords, Functions, Literals, Names, Titles, Built-ins, Types */
-.hljs-keyword,
+.hljs-variable,
+.hljs-template-variable,
 .hljs-function,
 .hljs-literal,
-.hljs-name,
-.hljs-title,
-.hljs-built_in,
-.hljs-type {
+.hljs-attribute {
   @apply text-[var(--primary-color)] dark:text-[var(--primary-color-dark)];
 }
 
 /* Secondary Highlight: Strings and Variables */
-.hljs-string,
-.hljs-variable,
-.hljs-template-variable {
+.hljs-keyword,
+.hljs-title,
+.hljs-built_in,
+.hljs-tag,
+.hljs-type {
   @apply text-[var(--secondary-color)] dark:text-[var(--secondary-color-dark)];
 }
 
@@ -75,13 +76,20 @@ code .highlight-line {
 .hljs-bullet,
 .hljs-attr,
 .hljs-regexp,
+.hljs-selector-class,
+.hljs-selector-tag,
 .hljs-link {
   @apply text-[var(--tertiary-color)] dark:text-[var(--tertiary-color-dark)];
 }
+
+/* 
+.hljs-string {
+  @apply text-[#334155]
+} */
 
 /* Tertiary Highlight: Comments and Meta */
 .hljs-comment,
 .hljs-quote,
 .hljs-meta {
-  @apply text-gray-8;
+  @apply text-gray-10;
 }

@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react"
 import _ from "lodash"
 
-const tailwindCssLink = '<script src="https://cdn.tailwindcss.com"></script>'
+const _tailwind_script = `<script src="https://cdn.tailwindcss.com"></script>`
 
 export const useIframeThrottle = () => {
   const iframeVisibleRef = useRef<HTMLIFrameElement | null>(null)
@@ -15,9 +15,11 @@ export const useIframeThrottle = () => {
         iframeVisibleRef.current,
       ]
 
-      // For smooth transition, we set the opacity of the iframeBuffer to 0
+      // For smooth transition, we set the opacity and visibility of the iframe.
       iframeVisibleRef.current.style.opacity = "1"
+      iframeVisibleRef.current.style.visibility = "visible"
       iframeBufferRef.current.style.opacity = "0"
+      iframeBufferRef.current.style.visibility = "hidden"
     }
   }
 
@@ -26,7 +28,7 @@ export const useIframeThrottle = () => {
       const iframe = iframeBufferRef.current
       if (iframe && iframe.contentWindow && iframe.contentDocument) {
         iframe.contentDocument.open()
-        iframe.contentDocument.write(tailwindCssLink + code)
+        iframe.contentDocument.write(_tailwind_script + code)
         iframe.contentDocument.close()
         swapIFrames()
       }

@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react"
 import hljs from "highlight.js"
 import { ChevronDown, ChevronUp } from "lucide-react"
 
-//  Earthy Code Theme
 import "~/styles/code-theme.css"
 
 import { cn } from "~/utils/misc"
@@ -182,7 +181,7 @@ function CodeBlock({
           </div>
         </div>
       )}
-      <div className="sticky left-0 top-0 z-50 h-2 w-[700px]">
+      <div className="sticky left-0 top-0 z-50 h-0 w-[700px]">
         {copyable && !filenameState && (
           <CopyButton
             value={snippetState}

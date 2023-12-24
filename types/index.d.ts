@@ -10,3 +10,4 @@ export type TECHNOLOGY =
   | "html-css"
   | "html-bootstrap"
   | "react-bootstrap"
+  | "svg"

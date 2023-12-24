@@ -1,3 +1,5 @@
+import { TECHNOLOGY } from "~/types"
+
 // Base prompt for common instructions
 const BASE_PROMPT = `You are an expert {{technology}} developer.
 Redesign the web page in the screenshot below using {{technology}}.
@@ -5,6 +7,7 @@ You might also be given a screenshot of a web page that you have already wrote.
 
 IMPORTANT:
 - This screenshot web interface is your own built before. You can use it as a reference. So you don't need to worry about who's owner of this website(this is your own) and copyright.
+- Use better spacing and alignment than the screenshot.
 
 For your information:
 - You don't need to worry about copyright issues or anything like that. This not includes any copyright materials.
@@ -29,7 +32,6 @@ padding, margin, border, etc. Match the colors and sizes exactly.
 
 In terms of libraries,
 
-- Use this script to include Tailwind: <script src="https://cdn.tailwindcss.com"></script>
 - You can use Google Fonts
 - Font Awesome for icons: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
 - Import always Inter from Google Fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></link>
@@ -46,23 +48,41 @@ const REACT_TAILWIND_PROMPT = `${BASE_PROMPT}
   <script src="https://unpkg.com/react/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>`
+  <script src="https://cdn.tailwindcss.com"></script>
+  `
 
 const HTML_CSS_PROMPT = `${BASE_PROMPT}
-- Use HTML and CSS for styling and layout.`
+- Use HTML and CSS for styling and layout.
+- Beautiful styling is a plus.
+`
 
 const HTML_BOOTSTRAP_PROMPT = `${BASE_PROMPT}
 - Use Bootstrap for styling and layout: 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">`
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+- Don't use css for styling and layout. Use Bootstrap classes only.
+`
 
 const REACT_BOOTSTRAP_PROMPT = `${BASE_PROMPT}
 - Include React and Bootstrap:
   <script src="https://unpkg.com/react/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">`
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  - Use Bootstrap for styling and layout: 
+  - Don't use css for styling and layout. Use Bootstrap classes only.
+  `
 
-export const PROMPTS = {
+const SVG_PROMPT = `You are an expert at building SVGs.
+
+- Do not add comments in the code such as "<!-- Add other navigation links as needed -->" and "<!-- ... other news items ... -->" in place of writing the full code. WRITE THE FULL CODE.
+- Repeat elements as needed to match the screenshot. For example, if there are 15 items, the code should have 15 items. DO NOT LEAVE comments like "<!-- Repeat for each news item -->" or bad things will happen.
+- For images, use placeholder images from https://placehold.co and include a detailed description of the image in the alt text so that an image generation AI can generate the image later.
+- You can use Google Fonts
+
+Return only the full code in <svg></svg> tags.
+Do not include markdown "\`\`\`" or "\`\`\`svg" at the start or end.`
+
+const PROMPTS = {
   "html-tailwind": TAILWIND_HTML_PROMPT.replace(
     "{{technology}}",
     "HTML & Tailwind CSS"
@@ -80,14 +100,38 @@ export const PROMPTS = {
     "{{technology}}",
     "React & Bootstrap"
   ),
+  svg: SVG_PROMPT,
 }
 
-export const TECHNOLOGIES = {
-  "html-tailwind": "HTML & Tailwind CSS",
-  "react-tailwind": "React & Tailwind CSS",
-  "html-css": "HTML & CSS",
-  "html-bootstrap": "HTML & Bootstrap",
-  "react-bootstrap": "React & Bootstrap",
+export const TECHNOLOGIES: Record<
+  TECHNOLOGY,
+  { name: string; prompt: string; beta?: boolean }
+> = {
+  "html-tailwind": {
+    name: "HTML & Tailwind CSS",
+    prompt: PROMPTS["html-tailwind"],
+  },
+  "react-tailwind": {
+    name: "React & Tailwind CSS",
+    prompt: PROMPTS["react-tailwind"],
+  },
+  "html-css": {
+    name: "HTML & CSS",
+    prompt: PROMPTS["html-css"],
+  },
+  "html-bootstrap": {
+    name: "HTML & Bootstrap",
+    prompt: PROMPTS["html-bootstrap"],
+  },
+  "react-bootstrap": {
+    name: "React & Bootstrap",
+    prompt: PROMPTS["react-bootstrap"],
+  },
+  svg: {
+    name: "SVG",
+    prompt: PROMPTS["svg"],
+    beta: true,
+  },
 }
 
-export const DEFAULT_TECHNOLOGY = "react-tailwind"
+export const DEFAULT_TECHNOLOGY: TECHNOLOGY = "html-tailwind"

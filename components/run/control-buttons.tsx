@@ -12,11 +12,11 @@ import PreviewSizeAdjust from "~/components/run/preview-size-adjust"
 import TechnologiesSelect from "~/components/uploaders/technologies-select"
 
 interface ControlButtonsProps {
-  isRunning: boolean
   onStart: () => void
   onStop: () => void
-  code: string
   rerun: () => void
+  isRunning: boolean
+  code: string
   technology_id: string
 }
 

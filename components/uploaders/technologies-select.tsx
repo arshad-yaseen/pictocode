@@ -4,6 +4,7 @@ import { ITechnologiesSelectProps } from "~/interfaces"
 import { TECHNOLOGY } from "~/types"
 import { cn } from "~/utils/misc"
 
+import { Badge } from "~/components/ui/badge"
 import {
   Select,
   SelectContent,
@@ -27,9 +28,10 @@ const TechnologiesSelect: React.FC<ITechnologiesSelectProps> = ({
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {Object.entries(TECHNOLOGIES).map(([key, value]) => (
+          {Object.entries(TECHNOLOGIES).map(([key, obj]) => (
             <SelectItem key={key} value={key}>
-              {value}
+              <p className="inline-block">{obj.name}</p>
+              {obj.beta && <Badge className="ml-2">Beta</Badge>}
             </SelectItem>
           ))}
         </SelectContent>

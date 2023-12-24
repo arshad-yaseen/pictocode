@@ -1,4 +1,4 @@
-import { PROMPTS, TECHNOLOGIES } from "~/constants/prompts"
+import { TECHNOLOGIES } from "~/constants/prompts"
 import { ERROR, SUCCESS } from "~/constants/res-messages"
 import { OpenAIBody, TECHNOLOGY } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
@@ -148,5 +148,5 @@ export const validateApiKey = async (
 }
 
 export const buildPrompt = (technologyId: TECHNOLOGY) => {
-  return PROMPTS[technologyId]
+  return TECHNOLOGIES[technologyId].prompt
 }

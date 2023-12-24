@@ -9,6 +9,8 @@ export const generateCode = async ({
   setLoadingText,
   setIsBringApiKeyDialogOpen,
   setCode,
+  // Stop: A ref to a boolean value that can be set to true to stop the generation
+  stop,
 }: {
   technology_id: TECHNOLOGY
   imageUrl: string
@@ -17,6 +19,7 @@ export const generateCode = async ({
   setLoadingText: React.Dispatch<React.SetStateAction<string>>
   setIsBringApiKeyDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
   setCode: React.Dispatch<React.SetStateAction<string>>
+  stop?: React.MutableRefObject<boolean>
 }): Promise<void> => {
   const response = await createChat({
     body: {
@@ -64,6 +67,10 @@ export const generateCode = async ({
   let code = ""
 
   while (!done) {
+    // Break the stream if the user has stopped the generation
+    if (stop?.current) {
+      break
+    }
     const { value, done: doneReading } = (await reader?.read()) as any
     done = doneReading
     const chunkValue = decoder.decode(value)
@@ -73,6 +80,9 @@ export const generateCode = async ({
   }
 
   // Clear loading state
+  if (stop && stop.current) {
+    stop.current = false
+  }
   setLoadingText("")
   setIsRunning(false)
   clearTimeout(timeout)
