@@ -5,8 +5,8 @@ export const siteConfig = {
   short_name: "PictoCode",
   description:
     "PictoCode is a tool that converts images and URLs into code. It can process both image files and image URLs, as well as website URLs, effectively cloning websites. The tool also supports conversion to modern frameworks. It is a free and open-source tool designed for converting design images into code.",
-  url: "https://pictocode.arshadpyaseen.com",
-  ogImage: "https://pictocode.arshadpyaseen.com/og.png",
+  url: "https://pictocode.arshadyaseen.com",
+  ogImage: "https://pictocode.arshadyaseen.com/og.png",
   links: {
     twitter: "https://twitter.com/arshadyaseeen",
     github: "https://github.com/arshad-yaseen/pictocode",
