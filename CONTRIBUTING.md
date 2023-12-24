@@ -3,8 +3,11 @@
 Thank you for your interest in contributing to our project! Here's how you can help:
 
 ## Reporting Issues
-- Use GitHub Issues to report bugs or suggest features.
+- Use GitHub Issues to report bugs.
 - Provide as much detail as you can.
+
+## Requests for new features
+If you have a request for a new feature, please open a discussion on GitHub. We'll be happy to help you out.
 
 ## Making Changes
 - Fork the repository and create a branch for your work.
@@ -48,10 +51,6 @@ the following categories:
 If you are interested in the detailed specification you can visit
 https://www.conventionalcommits.org/ or check out the
 [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
-
-## Requests for new components
-
-If you have a request for a new feature, please open a discussion on GitHub. We'll be happy to help you out.
 
 ## Remember
 - All contributions are under the same license as the project.
