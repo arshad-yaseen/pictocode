@@ -12,7 +12,7 @@ const SiteHero = () => {
         Turn your screenshots into code
       </h1>
       <p className="mt-4  text-center text-gray-9">
-        Upload a design or enter an image/website URL. <br />{" "}
+        Upload a screenshot or enter an image/website URL. <br />{" "}
         {siteConfig.short_name} generates the code fast and accurately.
       </p>
       <div className="py-1" />
