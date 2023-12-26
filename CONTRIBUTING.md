@@ -3,23 +3,26 @@
 Thank you for your interest in contributing to our project! Here's how you can help:
 
 ## Reporting Issues
+
 - Use GitHub Issues to report bugs.
 - Provide as much detail as you can.
 
 ## Requests for new features
+
 If you have a request for a new feature, please open a discussion on GitHub. We'll be happy to help you out.
 
 ## Making Changes
+
 - Fork the repository and create a branch for your work.
 - Make your changes.
 - Submit a pull request with a clear description of what you've done.
-
-## Guidelines
-- Keep code changes simple and focused.
-- Follow the existing coding style.
-
+- 
 Before you commit, run `npm run lint` to check your code for errors and `npm run format:write` to format your code.
 
+## Guidelines
+
+- Keep code changes simple and focused.
+- Follow the existing coding style.
 
 ## Commit Convention
 
@@ -53,6 +56,7 @@ https://www.conventionalcommits.org/ or check out the
 [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 ## Remember
+
 - All contributions are under the same license as the project.
 
 Your contributions are greatly appreciated!
