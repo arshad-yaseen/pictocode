@@ -1,4 +1,4 @@
-![hero](/readme.png)
+![hero](/public/readme.png)
 
 ## Contributing
 
