@@ -1,4 +1,4 @@
-![hero](https://pictocode.arshadyaseen.com/og.png)
+![hero](/readme.png)
 
 ## Contributing
 
