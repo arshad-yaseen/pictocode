@@ -1,10 +1,10 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "PictoCode - Convert screenshots to code",
-  short_name: "PictoCode",
+  name: "Pictocode - Convert screenshots to code",
+  short_name: "Pictocode",
   description:
-    "PictoCode is a tool that converts screenshots and URLs into code. It can process both image files and image URLs, as well as website URLs, effectively cloning websites. The tool also supports conversion to modern frameworks. It is a free and open-source tool designed for converting design images into code.",
+    "Pictocode is a tool that converts screenshots and URLs into code. It can process both image files and image URLs, as well as website URLs, effectively cloning websites. The tool also supports conversion to modern frameworks. It is a free and open-source tool designed for converting design images into code.",
   url: "https://pictocode.arshadyaseen.com",
   ogImage: "https://pictocode.arshadyaseen.com/og.png",
   links: {
@@ -20,10 +20,10 @@ export const siteConfig = {
     mail: "m@arshadpyaseen.com",
   },
   keywords: [
-    "PicToCode Tool",
+    "Pictocode Tool",
     "Convert Image to Code",
     "Image to HTML Converter",
-    "PicToCode Software",
+    "Pictocode Software",
     "Image to CSS Generator",
     "React Code from Image",
     "Vue Code Generator",
