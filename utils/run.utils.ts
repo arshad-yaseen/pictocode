@@ -48,6 +48,9 @@ export const generateCode = async ({
     type: "vision",
   })
 
+  console.log(response);
+  
+
   if (response.error?.statusCode === 403) {
     setIsRunning(false)
     setLoadingText("")
