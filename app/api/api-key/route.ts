@@ -2,7 +2,9 @@ import { ERROR, SUCCESS } from "~/constants/res-messages"
 import { ServerResponse } from "~/server/utils"
 
 import { env } from "~/env.mjs"
-import { del, getWithDecryption, setWithEncryption } from "~/lib/session-store"
+import { del, get, set } from "~/lib/session-store"
+
+export const runtime = "edge"
 
 export async function POST(req: Request): Promise<Response> {
   try {
@@ -13,7 +15,7 @@ export async function POST(req: Request): Promise<Response> {
       return ServerResponse.badRequest(ERROR.MISSING_API_KEY)
     }
 
-    setWithEncryption(env.API_KEY_SESSION_KEY, apiKey)
+    set(env.API_KEY_SESSION_KEY, apiKey)
 
     return ServerResponse.success({
       body: { message: ERROR.API_KEY_NOT_STORED },
@@ -27,7 +29,7 @@ export async function POST(req: Request): Promise<Response> {
 
 export async function GET(): Promise<Response> {
   try {
-    const apiKey = getWithDecryption(env.API_KEY_SESSION_KEY) || ""
+    const apiKey = get(env.API_KEY_SESSION_KEY) || ""
 
     if (!apiKey) {
       return ServerResponse.notFound(ERROR.API_KEY_NOT_FOUND)

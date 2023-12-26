@@ -7,9 +7,9 @@ import OpenAI from "openai"
 
 import { env } from "~/env.mjs"
 import { models } from "~/config/ai"
-import { getWithDecryption } from "~/lib/session-store"
+import { get } from "~/lib/session-store"
 
-export const maxDuration = 300
+export const runtime = "edge"
 
 export async function POST(req: Request): Promise<Response> {
   try {
@@ -32,7 +32,7 @@ export async function POST(req: Request): Promise<Response> {
       return ServerResponse.badRequest(ERROR.MISSING_OPENAI_MESSAGES)
     }
 
-    const OPENAI_API_KEY = api_key || getWithDecryption(env.API_KEY_SESSION_KEY)
+    const OPENAI_API_KEY = api_key || get(env.API_KEY_SESSION_KEY)
 
     if (!OPENAI_API_KEY) {
       return ServerResponse.unauthorized(ERROR.MISSING_API_KEY)

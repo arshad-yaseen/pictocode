@@ -2,9 +2,6 @@ import "server-only"
 
 import { cookies } from "next/headers"
 
-import { env } from "~/env.mjs"
-import { decrypt, encrypt } from "~/lib/crypto"
-
 export function get(key: string) {
   const cookieStore = cookies()
   return cookieStore.get(key)?.value
@@ -22,17 +19,6 @@ export function set(key: string, value: string) {
     // providing some protection against cross-site request forgery (CSRF) attacks.
     sameSite: "strict",
   })
-}
-
-export const setWithEncryption = (key: string, value: string) => {
-  const encryptedValue = encrypt(value, env.CRYPTO_SECRET_KEY)
-  set(key, encryptedValue)
-}
-
-export const getWithDecryption = (key: string) => {
-  const encryptedValue = get(key)
-  if (!encryptedValue) return
-  return decrypt(encryptedValue, env.CRYPTO_SECRET_KEY)
 }
 
 export function del(key: string) {
