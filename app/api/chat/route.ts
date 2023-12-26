@@ -9,6 +9,9 @@ import { env } from "~/env.mjs"
 import { models } from "~/config/ai"
 import { getWithDecryption } from "~/lib/session-store"
 
+export const runtime = "edge"
+export const maxDuration = 300
+
 export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json()
