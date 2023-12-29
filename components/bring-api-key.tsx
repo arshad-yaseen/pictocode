@@ -11,6 +11,7 @@ import { DELETE, GET, POST } from "~/utils/http.utils"
 import { Loader2Icon } from "lucide-react"
 import { toast } from "sonner"
 
+import { useMediaQuery } from "~/hooks/use-media-query"
 import { Button } from "~/components/ui/button"
 import { Checkbox } from "~/components/ui/checkbox"
 import {
@@ -21,7 +22,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog"
-
 import {
   Drawer,
   DrawerClose,
@@ -32,10 +32,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui/drawer"
-
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-import { useMediaQuery } from "~/hooks/use-media-query"
 
 interface IBringApiKeyProps {
   noTrigger?: boolean
@@ -158,7 +156,7 @@ const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
   }
 
   // If it's mobile, use a drawer, otherwise use a dialog
-  if(isDesktop) {
+  if (isDesktop) {
     return (
       <Dialog
         open={isDialogOpen}
@@ -214,7 +212,7 @@ const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
             </Button>
           </DrawerTrigger>
         )}
-        <DrawerContent className="p-8 pt-0 h-[500px]">
+        <DrawerContent className="h-[500px] p-8 pt-0">
           <DrawerHeader className="mt-6">
             <DrawerTitle className="text-center text-2xl font-semibold">
               OpenAI API key
@@ -245,7 +243,6 @@ const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
       </Drawer>
     )
   }
-
 }
 
 const ApiKeyForm = ({

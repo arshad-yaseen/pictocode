@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
+import { ERROR } from "~/constants/res-messages"
 import { TECHNOLOGY } from "~/types"
 import { generateCode } from "~/utils/run.utils"
 import { toast } from "sonner"
@@ -12,7 +13,6 @@ import BringApiKey from "~/components/bring-api-key"
 import ControlButtons from "~/components/run/control-buttons"
 import ImagePreview from "~/components/run/image-preview"
 import Preview from "~/components/run/preview"
-import { ERROR } from "~/constants/res-messages"
 
 const RunPage = () => {
   const searchParams = useSearchParams()
@@ -81,7 +81,7 @@ const RunPage = () => {
         <Textarea
           value={extraInstructions}
           onChange={(e) => setExtraInstructions(e.target.value)}
-          className="max-h-[150px] resize-none w-full flex-1"
+          className="max-h-[150px] w-full flex-1 resize-none"
           placeholder="Enter extra instructions here"
         />
         {/* 

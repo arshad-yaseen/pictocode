@@ -17,7 +17,10 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ imageUrl, isRunning }) => {
       <img
         src={imageUrl}
         alt="run_image"
-        className={cn("relative z-30 w-full rounded-[10px]", isRunning && "animate-pulse")}
+        className={cn(
+          "relative z-30 w-full rounded-[10px]",
+          isRunning && "animate-pulse"
+        )}
       />
     </div>
   )

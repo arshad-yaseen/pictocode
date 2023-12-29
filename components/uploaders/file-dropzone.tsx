@@ -50,11 +50,11 @@ const FileDropzone: React.FC<IFileDropzoneProps> = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
-    <div {...getRootProps()} className="flex md:w-auto w-full  justify-center">
+    <div {...getRootProps()} className="flex w-full justify-center  md:w-auto">
       <input {...getInputProps()} />
       <Card
         className={cn(
-          "flex h-[190px]  cursor-pointer flex-col w-full  items-center justify-center gap-y-4 text-gray-10 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",
+          "flex h-[190px]  w-full cursor-pointer flex-col  items-center justify-center gap-y-4 text-gray-10 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",
           isDragActive ? "shadow-tooltip" : "shadow-border-small"
         )}
       >
