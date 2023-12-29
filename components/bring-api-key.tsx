@@ -148,7 +148,7 @@ const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
         )}
         <DialogContent className=" md:!rounded-xl md:p-8">
           <DialogHeader>
-            <DialogTitle className="text-center text-2xl font-semibold">
+            <DialogTitle className="text-center font-inter text-2xl font-semibold tracking-tight sm:font-sans sm:tracking-tighter">
               OpenAI API key
             </DialogTitle>
             <DialogDescription>
