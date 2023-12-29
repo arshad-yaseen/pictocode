@@ -47,7 +47,7 @@ export const HeaderLogo = () => (
       <Image src="/icon.png" fill alt="Header Logo" />
       <span className="sr-only">Header Logo</span>
     </div>
-    <h2 className="text-xl font-semibold text-gray-12 sm:tracking-tighter tracking-tight sm:font-sans font-inter">
+    <h2 className="font-inter text-xl font-semibold tracking-tight text-gray-12 sm:font-sans sm:tracking-tighter">
       {siteConfig.short_name}
     </h2>
   </Link>
