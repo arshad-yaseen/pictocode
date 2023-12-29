@@ -25,7 +25,7 @@ export const withPreviewLoading = (Component: React.FC<PreviewProps>) => {
     ) {
       return (
         <div className="flex h-full w-full items-center justify-center">
-          You&apos;ve chosen React&semi; please wait a while for the preview.
+          You&apos;ve chosen React; please wait a while for the preview.
         </div>
       )
     }

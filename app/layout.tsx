@@ -8,7 +8,7 @@ import "~/styles/mdx.css"
 
 import { Metadata } from "next"
 
-import { fontMono, fontSans } from "~/lib/fonts"
+import { fontInter, fontMono, fontSans } from "~/lib/fonts"
 import Providers from "~/components/providers"
 
 export const metadata: Metadata = {
@@ -65,7 +65,8 @@ export default async function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
-          fontMono.variable
+          fontMono.variable,
+          fontInter.variable
         )}
       >
         <Providers>{children}</Providers>

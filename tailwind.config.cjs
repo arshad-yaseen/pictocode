@@ -95,7 +95,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-mono)", ...fontFamily.mono],
+        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        inter: ["var(--font-inter)"],
       },
       keyframes: {
         "accordion-down": {

@@ -210,7 +210,7 @@ function CodeBlock({
           ref={codeRef as any}
           dangerouslySetInnerHTML={{ __html: wrappedHighlightedCode }}
           className={cn(
-            `hide-scrollbar min-w-full overflow-x-scroll py-6 font-mono text-sm !leading-[0.2] ${
+            `hide-scrollbar min-w-full overflow-x-scroll py-6 font-mono text-xl !leading-[0.2] ${
               !disableCodeFont ? "" : ""
             }`,
             { "py-4": getLines(highlightedCode).length <= 3 },

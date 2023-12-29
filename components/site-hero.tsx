@@ -8,7 +8,7 @@ import { UploadersSection } from "~/components/uploaders/uploaders-section"
 const SiteHero = () => {
   return (
     <div className="flex  w-full flex-col items-center space-y-6 pt-16">
-      <h1 className="text-center text-4xl font-semibold tracking-tighter">
+      <h1 className="text-center font-inter text-4xl font-semibold tracking-tighter sm:font-sans">
         Turn your screenshots into code
       </h1>
       <p className="mt-4  text-center text-gray-10">

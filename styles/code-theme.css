@@ -9,7 +9,7 @@ code .line {
   -o-tab-size: 4;
   tab-size: 4;
   padding: 0.5px 2.5rem 0.5px 1.5rem;
-  @apply text-[#334155];
+  @apply text-[#465262];
 }
 
 code {
@@ -82,10 +82,9 @@ code .highlight-line {
   @apply text-[var(--tertiary-color)] dark:text-[var(--tertiary-color-dark)];
 }
 
-/* 
 .hljs-string {
-  @apply text-[#334155]
-} */
+  @apply text-[#465262];
+}
 
 /* Tertiary Highlight: Comments and Meta */
 .hljs-comment,
