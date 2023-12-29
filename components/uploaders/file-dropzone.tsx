@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { IFileDropzoneProps } from "~/interfaces"
 import { cn } from "~/utils/misc"
 import {
-  addDocumentImagePasteListener,
+  documentImagePasteListener,
   uploadImage,
 } from "~/utils/uploaders.utils"
 import { UploadIcon } from "lucide-react"
@@ -36,7 +36,7 @@ const FileDropzone: React.FC<IFileDropzoneProps> = ({
 
   // Handle image paste from clipboard
   useEffect(() => {
-    const removePasteListener = addDocumentImagePasteListener(
+    const removePasteListener = documentImagePasteListener(
       async (file: File) => {
         await processFile(file)
       }
@@ -50,11 +50,11 @@ const FileDropzone: React.FC<IFileDropzoneProps> = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
-    <div {...getRootProps()} className="flex w-full justify-center">
+    <div {...getRootProps()} className="flex md:w-auto w-full  justify-center">
       <input {...getInputProps()} />
       <Card
         className={cn(
-          "flex h-[150px] w-full cursor-pointer flex-col  items-center justify-center gap-y-4 text-gray-11 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",
+          "flex h-[190px]  cursor-pointer flex-col w-full  items-center justify-center gap-y-4 text-gray-10 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",
           isDragActive ? "shadow-tooltip" : "shadow-border-small"
         )}
       >

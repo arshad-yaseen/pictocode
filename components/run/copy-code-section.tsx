@@ -27,7 +27,7 @@ const CodeDialog = ({ code }: CopyCodeSectionProps) => {
           Code
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] min-w-[700px] overflow-scroll p-0">
+      <DialogContent className="max-h-[90vh] min-h-[600px] min-w-[700px] overflow-scroll p-0">
         <CodeBlock
           snippet={`${code}\n`}
           language="html"

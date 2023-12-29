@@ -51,7 +51,7 @@ const pasteHandler = (
   }
 }
 
-export const addDocumentImagePasteListener = (
+export const documentImagePasteListener = (
   callback: DocumentImagePasteCallback
 ): (() => void) => {
   const boundPasteHandler = (event: ClipboardEvent) =>

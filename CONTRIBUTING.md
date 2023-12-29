@@ -16,8 +16,7 @@ If you have a request for a new feature, please open a discussion on GitHub. We'
 - Fork the repository and create a branch for your work.
 - Make your changes.
 - Submit a pull request with a clear description of what you've done.
-- 
-Before you commit, run `npm run lint` to check your code for errors and `npm run format:write` to format your code.
+- Before you commit, run `npm run lint` to check your code for errors and `npm run format:write` to format your code.
 
 ## Guidelines
 

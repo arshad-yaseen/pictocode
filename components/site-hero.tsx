@@ -7,11 +7,11 @@ import { UploadersSection } from "~/components/uploaders/uploaders-section"
 
 const SiteHero = () => {
   return (
-    <div className="flex  w-full flex-col items-center space-y-6 pt-20">
+    <div className="flex  w-full flex-col items-center space-y-6 pt-16">
       <h1 className="text-center text-4xl font-semibold tracking-tighter">
         Turn your screenshots into code
       </h1>
-      <p className="mt-4  text-center text-gray-9">
+      <p className="mt-4  text-center text-gray-10">
         Upload a screenshot or enter an image/website URL. <br />{" "}
         {siteConfig.short_name} generates the code fast and accurately.
       </p>

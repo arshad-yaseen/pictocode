@@ -147,6 +147,9 @@ export const validateApiKey = async (
   }
 }
 
-export const buildPrompt = (technologyId: TECHNOLOGY) => {
-  return TECHNOLOGIES[technologyId].prompt
+export const buildPrompt = (
+  technologyId: TECHNOLOGY,
+  extraInstructions?: string
+) => {
+  return TECHNOLOGIES[technologyId].prompt + (extraInstructions || "")
 }

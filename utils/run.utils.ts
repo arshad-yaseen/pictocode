@@ -3,6 +3,7 @@ import { buildPrompt, createChat } from "~/utils/ai.utils"
 
 export const generateCode = async ({
   technology_id,
+  extraInstructions,
   imageUrl,
   updateIFrame,
   setIsRunning,
@@ -13,6 +14,7 @@ export const generateCode = async ({
   stop,
 }: {
   technology_id: TECHNOLOGY
+  extraInstructions?: string
   imageUrl: string
   updateIFrame: (code: string) => void
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
@@ -29,7 +31,8 @@ export const generateCode = async ({
           content: [
             {
               type: "text",
-              text: buildPrompt(technology_id),
+              // If the prompt is provided, use it, otherwise generate code by technology.
+              text: buildPrompt(technology_id, extraInstructions),
             },
             {
               type: "image_url",
@@ -47,9 +50,6 @@ export const generateCode = async ({
     },
     type: "vision",
   })
-
-  console.log(response);
-  
 
   if (response.error?.statusCode === 403) {
     setIsRunning(false)

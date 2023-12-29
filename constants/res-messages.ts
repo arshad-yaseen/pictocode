@@ -20,4 +20,5 @@ export const ERROR = {
   MISSING_URL: "URL parameter is required",
   SCREENSHOT_NOT_GENERATED: "Cannot take screenshot",
   API_KET_NOT_FETCHED: "Could not fetch API key",
+  ERROR_RENDER_CODE: "Could not render code, please try again.",
 }
