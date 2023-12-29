@@ -19,3 +19,25 @@ export interface ITechnologiesSelectProps {
   className?: string
   defaultValue?: string
 }
+
+export interface IBringApiKeyProps {
+  noTrigger?: boolean
+  isOpen?: boolean
+  setIsOpen?: (isOpen: boolean) => void
+}
+
+export interface IApiKeyFormProps {
+  apiKey: string
+  setApiKey: React.Dispatch<React.SetStateAction<string>>
+  accepted: boolean
+  setAccepted: React.Dispatch<React.SetStateAction<boolean>>
+  isSecureOpen: boolean
+  setIsSecureOpen: React.Dispatch<React.SetStateAction<boolean>>
+  apiKeyNotSupported: string | null
+  setApiKeyNotSupported: React.Dispatch<React.SetStateAction<string | null>>
+  saving: boolean
+  deleting: boolean
+  isApiKeyFromSession: boolean
+  handleDelete: () => void
+  saveApiKey: (apiKey: string) => void
+}

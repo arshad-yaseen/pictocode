@@ -5,6 +5,8 @@ import { POST } from "~/utils/http.utils"
 
 import { env } from "~/env.mjs"
 
+export const runtime = "edge"
+
 interface IShotApiResponse {
   secure_url: string
 }

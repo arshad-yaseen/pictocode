@@ -6,6 +6,7 @@ import {
   OPENAI_USAGE_POLICIES,
 } from "~/constants/links"
 import { ERROR } from "~/constants/res-messages"
+import { IApiKeyFormProps, IBringApiKeyProps } from "~/interfaces"
 import { isCorrectApiKey, validateApiKey } from "~/utils/ai.utils"
 import { DELETE, GET, POST } from "~/utils/http.utils"
 import { Loader2Icon } from "lucide-react"
@@ -24,38 +25,14 @@ import {
 } from "~/components/ui/dialog"
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui/drawer"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-
-interface IBringApiKeyProps {
-  noTrigger?: boolean
-  isOpen?: boolean
-  setIsOpen?: (isOpen: boolean) => void
-}
-
-interface IApiKeyFormProps {
-  apiKey: string
-  setApiKey: React.Dispatch<React.SetStateAction<string>>
-  accepted: boolean
-  setAccepted: React.Dispatch<React.SetStateAction<boolean>>
-  isSecureOpen: boolean
-  setIsSecureOpen: React.Dispatch<React.SetStateAction<boolean>>
-  apiKeyNotSupported: string | null
-  setApiKeyNotSupported: React.Dispatch<React.SetStateAction<string | null>>
-  saving: boolean
-  deleting: boolean
-  isApiKeyFromSession: boolean
-  handleDelete: () => void
-  saveApiKey: (apiKey: string) => void
-}
 
 const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
   const [apiKey, setApiKey] = useState<string>("")
