@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { EVENT_PUB_PREVIEW_SIZE } from "~/constants/run"
 import { TECHNOLOGY } from "~/types"
 import { cn } from "~/utils/misc"
@@ -24,6 +24,7 @@ const Preview = ({
 }: PreviewProps) => {
   const isResizableActive = !!code && !isRunning
   const previewRef = useRef<Resizable>(null)
+  const [isPreviewSizeChanged, setIsPreviewSizeChanged] = useState(false)
 
   const handlePreviewSizeChange = (size: number) => {
     if (previewRef.current) {
@@ -31,6 +32,7 @@ const Preview = ({
         width: size,
         height: "100%",
       })
+      setIsPreviewSizeChanged(true)
     }
   }
 
@@ -50,7 +52,10 @@ const Preview = ({
           right: isResizableActive,
           left: isResizableActive,
         }}
-        className={cn("relative mx-auto border-t transition-colors duration-300")}
+        className={cn("relative mx-auto  transition-colors duration-300", {
+          // If the preview size is changed, add a border to the preview
+          border: isResizableActive && isPreviewSizeChanged,
+        })}
         ref={previewRef}
       >
         <iframe
