@@ -50,9 +50,7 @@ const Preview = ({
           right: isResizableActive,
           left: isResizableActive,
         }}
-        className={cn("relative mx-auto  transition-colors duration-300", {
-          border: isResizableActive,
-        })}
+        className={cn("relative mx-auto  transition-colors duration-300")}
         ref={previewRef}
       >
         <iframe
