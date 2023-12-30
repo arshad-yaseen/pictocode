@@ -15,7 +15,7 @@ function SiteFooter() {
             href={siteConfig.creator.twitter}
             target="_blank"
             rel="noreferrer"
-            className="font-medium underline underline-offset-4"
+            className="font-medium underline underline-offset-4 ring-offset-2 transition-all duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary "
           >
             {siteConfig.creator.name}
           </Link>
@@ -24,7 +24,7 @@ function SiteFooter() {
             href="https://vercel.com"
             target="_blank"
             rel="noreferrer"
-            className="font-medium underline underline-offset-4"
+            className="font-medium underline underline-offset-4 ring-offset-2 transition-all duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary "
           >
             Vercel
           </Link>
@@ -33,7 +33,7 @@ function SiteFooter() {
             href={siteConfig.links.github}
             target="_blank"
             rel="noreferrer"
-            className="font-medium underline underline-offset-4"
+            className="font-medium underline underline-offset-4 ring-offset-2 transition-all duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary "
           >
             GitHub
           </Link>

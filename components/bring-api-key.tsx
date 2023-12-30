@@ -141,7 +141,11 @@ const BringApiKey = ({ noTrigger, isOpen, setIsOpen }: IBringApiKeyProps) => {
       >
         {!noTrigger && (
           <DialogTrigger asChild>
-            <Button className="w-full rounded-lg md:mx-3 md:w-auto">
+            <Button
+              // accessibility
+              aria-label="Bring OpenAI API Key"
+              className="w-full rounded-lg md:mx-3 md:w-auto"
+            >
               {isApiKeyFromSession ? "Change" : "Bring"} OpenAI API Key
             </Button>
           </DialogTrigger>
@@ -258,6 +262,7 @@ const ApiKeyForm = ({
             onCheckedChange={(checked) => {
               setAccepted(checked as boolean)
             }}
+            aria-label="Accept OpenAI usage policies"
             checked={accepted}
             id="terms"
           />
@@ -276,6 +281,8 @@ const ApiKeyForm = ({
             setIsSecureOpen(!isSecureOpen)
             setApiKeyNotSupported(null)
           }}
+          aria-label="Is your API key secure? Your API key is exclusively stored within your own session, not on our servers, guaranteeing maximum security and privacy."
+          aria-expanded={isSecureOpen}
           className="text-sm font-medium transition-colors hover:text-gray-12/80"
         >
           Secure?

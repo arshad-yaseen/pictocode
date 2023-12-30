@@ -24,7 +24,10 @@ const TechnologiesSelect: React.FC<ITechnologiesSelectProps> = ({
         onValueChange={(value) => setTechnology(value as TECHNOLOGY)}
         defaultValue={defaultValue || DEFAULT_TECHNOLOGY}
       >
-        <SelectTrigger className="col-span-2 h-10">
+        <SelectTrigger
+          aria-label="Select a technology"
+          className="col-span-2 h-10"
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
