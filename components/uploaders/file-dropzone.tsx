@@ -47,14 +47,19 @@ const FileDropzone: React.FC<IFileDropzoneProps> = ({
     }
   }, [])
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp"],
+    },
+  })
 
   return (
     <div
       {...getRootProps()}
       className="flex w-full justify-center  rounded-lg ring-offset-2 transition-all duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:w-auto"
     >
-      <input accept="image/*" {...getInputProps()} />
+      <input {...getInputProps()} />
       <Card
         className={cn(
           "flex h-[190px] w-full cursor-pointer flex-col  items-center justify-center gap-y-4 text-gray-11 transition-shadow duration-200 hover:shadow-tooltip md:w-[600px]",

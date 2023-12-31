@@ -34,11 +34,18 @@ In terms of libraries,
 
 - You can use Google Fonts
 - Font Awesome for icons: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
-- Import always Inter from Google Fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></link>
+- If you're seeing some special fonts in the screenshot, you can use Google Fonts to import it, Otherwise you can use always inter font: <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></link>
 
 Return only the full code in <html></html> tags.
 Do not include markdown "\`\`\`" or "\`\`\`html" at the start or end.
-And do not include any other text or code. Only the full code in <html></html> tags. not in \`\`\`html\`\`\` markdown syntax.`
+And do not include any other text or code. Only the full code in <html></html> tags. not in \`\`\`html\`\`\` markdown syntax.
+
+MOST IMPORTANT:
+- The design is should be pixel perfect. So you should match the screenshot exactly.
+- Keep colors, font sizes, font families, padding, margin, border, etc. exactly as in the screenshot and also the spacing and alignment perfectly.
+
+
+`
 
 const TAILWIND_HTML_PROMPT = `${BASE_PROMPT}
 - Use Tailwind CSS: <script src="https://cdn.tailwindcss.com"></script>`
