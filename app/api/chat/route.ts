@@ -16,12 +16,10 @@ export async function POST(req: Request): Promise<Response> {
     const body = await req.json()
     const {
       openai_body,
-      type = "chat",
       api_key,
       stream_response = true,
     }: {
       openai_body: OpenAIBody
-      type: "chat" | "vision"
       api_key: string
       stream_response: boolean
     } = body

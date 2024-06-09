@@ -44,9 +44,8 @@ export const generateCode = async ({
           ],
         },
       ],
-      temperature: 3,
+      temperature: 0.3,
     },
-    type: "vision",
   })
 
   if (response.error?.statusCode === 403) {

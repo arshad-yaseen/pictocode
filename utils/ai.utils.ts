@@ -21,14 +21,12 @@ type OpenAIResponse = {
 type OpenAIOptions = {
   apiKey?: string
   body: OpenAIBody
-  type?: "chat" | "vision"
   streamResponse?: boolean
 }
 
 export async function createChat({
   apiKey,
   body,
-  type = "chat",
   streamResponse = true,
 }: OpenAIOptions): Promise<OpenAIResponse> {
   try {
@@ -40,7 +38,6 @@ export async function createChat({
       body: JSON.stringify({
         openai_body: body,
         api_key: apiKey,
-        type: type,
         stream_response: streamResponse,
       }),
     })
@@ -115,7 +112,6 @@ export const validateApiKey = async (
     apiKey,
     body,
     streamResponse: false,
-    type: "vision",
   })
 
   if (isSupportedKey.isSuccess) {
