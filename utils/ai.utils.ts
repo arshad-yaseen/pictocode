@@ -3,7 +3,8 @@ import { ERROR, SUCCESS } from "~/constants/res-messages"
 import { OpenAIBody, TECHNOLOGY } from "~/types"
 import { ChatCompletionMessageParam } from "openai/resources"
 
-import { example_vision_api_messages, models } from "~/config/ai"
+import { example_vision_api_messages } from "~/config/ai"
+import { MODEL } from "~/constants/ai"
 
 type OpenAIResponse = {
   isSuccess: boolean
@@ -131,7 +132,7 @@ export const validateApiKey = async (
     }
   } else if (
     isSupportedKey.error?.statusCode === 404 &&
-    isSupportedKey.error?.message.includes(models.vision)
+    isSupportedKey.error?.message.includes(MODEL)
   ) {
     return {
       error: true,

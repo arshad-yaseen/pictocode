@@ -44,9 +44,7 @@ export const generateCode = async ({
           ],
         },
       ],
-      max_tokens: 4096,
-      temperature: 0,
-      seed: 0.5,
+      temperature: 3,
     },
     type: "vision",
   })

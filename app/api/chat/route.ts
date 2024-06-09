@@ -6,8 +6,8 @@ import { OpenAIStream, StreamingTextResponse } from "ai"
 import OpenAI from "openai"
 
 import { env } from "~/env.mjs"
-import { models } from "~/config/ai"
 import { get } from "~/lib/session-store"
+import { MODEL } from "~/constants/ai"
 
 export const runtime = "edge"
 
@@ -46,7 +46,7 @@ export async function POST(req: Request): Promise<Response> {
 
     const payload: OpenAI.ChatCompletionCreateParams = {
       ...openai_body,
-      model: type === "chat" ? models.chat : models.vision,
+      model: MODEL,
       stream: stream_response,
     }
 

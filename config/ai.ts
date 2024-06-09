@@ -1,8 +1,3 @@
-export const models = {
-  chat: "gpt-4-1106-preview",
-  vision: "gpt-4-vision-preview",
-}
-
 export const example_vision_api_messages = [
   {
     role: "user",
